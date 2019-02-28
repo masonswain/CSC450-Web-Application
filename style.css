@@ -1,0 +1,28 @@
+body {
+	color: white !important;
+	background-color: #660000 !important;
+	font-family: "Arial";
+	margin: auto !important;
+	width: 50% !important;
+	text-align: center !important;
+	padding-right: 14%;
+	padding-left: 14%;
+}
+
+#ticketsOpen, #openTicket, #send {
+	float: left;
+}
+
+#messagesWaiting, #viewTickets, #cancel {
+	float: right;
+}
+
+.button {
+	background-color: #595959;
+}
+
+#login {
+	padding-top: 25%;
+	padding-right: 5%;
+	padding-left: 5%;
+}

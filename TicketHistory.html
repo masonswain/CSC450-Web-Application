@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>South St. Paul Technology - Open Ticket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+    <h2>South St Paul Technology</h2>
+    <span class="notifications">
+        <!-- The following values will be inserted from the database -->
+        <div id="ticketsOpen">1 Ticket(s) Open</div>
+        <div id="messagesWaiting">1 Messages(s) Waiting</div>
+    </span>
+    <br><br>
+        <span class="buttons">
+            <div id="openTicket"><button type="button" class="button" onclick="location.href='OpenTicket.html'">Open Ticket</button></div>
+            <div id="viewTickets"><button type="button" class="button" onclick="location.href='ViewTicket.html'">View Tickets</button></div>
+        </span>
+    <br><br><br>
+    <form>
+        <table style="width:100%">
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Ticket Number</th>
+            </tr>
+            <tr>
+                <td>02/11/2019</td>
+                <td>Student login failed.</td>
+                <td>INC14569</td>
+            </tr>
+            <!--<tr>
+            <td>02/11/2019</td>
+            <td>Projector won't turn on.</td>
+            <td>INC14570</td>
+            </tr>-->
+        </table>
+        <div class="form-group">
+            <br>
+            <!-- User's username will be inserted here -->
+            <label for="message">Ticket Comment: Joel Knutson</label>
+            <textarea class="form-control" id="message" rows="8">9/24/2019 11:29 AM - Joel Knutson
+The student's password has been reset. 
+Please have them try again.</textarea>
+        </div>
+    </form>
+
+    <span class="buttons2">
+        <!--Reply-->
+        <div id="reply"><button type="button" class="button" onclick="location.href='ReplyForm.html'">Reply</button></div>
+        <!--View Tickets-->
+
+        <div id="cancel"><button type="button" class="button" onclick="location.href='TicketInfoMsgs.html'">Cancel</button></div>
+    </span>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</body>
+</html>
