@@ -20,10 +20,11 @@ session_start();
 
 <body>
 
-	<h1>South St Paul Technology</h1><br>
+	<h1>South St Paul Technology</h1>
 	<h2>
 		<?php
-		echo "Welcome $_SESSION[currentUser]";
+		//echo "Welcome $_SESSION[currentUser]";
+		echo "Welcome $_SESSION[currentFirstName] $_SESSION[currentLastName]";
 		?>
 	</h2>
     <h3>Home</h3>

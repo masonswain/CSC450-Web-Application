@@ -1,5 +1,25 @@
 <?php
+// creating session
 session_start();
+
+$servername = "joelknutson.net";
+$username = "joelknut_csc450";
+$pw = "CSP@2019";
+$dbName = "joelknut_csc450";
+$conn = new mysqli($servername, $username, $pw, $dbName);
+
+$user=$_POST['un'];
+$authpw=$_POST['authpw'];
+$_SESSION["currentUser"] = $user;
+$name = "SELECT FNAME, LNAME FROM USER WHERE USERNAME='$user'";
+$resultOfQuery = mysqli_query($conn, $name);
+
+if (mysqli_num_rows($resultOfQuery) > 0) {
+	$data = mysqli_fetch_array($resultOfQuery);
+
+	$_SESSION['currentFirstName'] = $data['FNAME'];
+	$_SESSION["currentLastName"] = $data['LNAME'];
+}
 ?>
 <!doctype html>
 
@@ -22,27 +42,13 @@ session_start();
 	<h2>South St Paul Technology</h2>
 	<div id="login">
 		
-		<?php
-			$user=$_POST['un'];
-			$authpw=$_POST['authpw'];
-
-			// creating session variable
-			$_SESSION["currentUser"] = $user;
-
-			$servername = "joelknutson.net";
-			$username = "joelknut_csc450";
-			$pw = "CSP@2019";
-			$dbName = "joelknut_csc450";
-
-			$conn = new mysqli($servername, $username, $pw, $dbName);
-
+		<?php			
 			if($conn->connect_error){
 
 				die("Connection failed: ".$dbConn->connect_error);
 			}
-			//echo "Connection successful<br/>";
-			//echo "username is ".$user;
 
+			// authentication 
 			$sql = "SELECT FNAME, LNAME FROM USER WHERE USERNAME='".$user."' AND PASSWORD=".$authpw;
 			$result=$conn->query($sql);
 
