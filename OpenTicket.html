@@ -28,7 +28,7 @@
             <div id="viewTickets"><button type="button" class="button" onclick="location.href='ViewTicket.html'">View Tickets</button></div>
         </span>
 	<br><br><br>
-            <form>
+            <form action="create-ticket.php" method="post">
                 <!-- Ticket # -->
                 <div class="form-group">
                     <label for="ticketID">Ticket #:</label>
@@ -58,14 +58,13 @@
                 </div>
 
                 <!-- Submitted By
-                <div class="form-group">
-                    <label for="userDropDown">Submitted By:</label>
-                    <select class="form-control" id="techUN">
-                        <option value="" disabled selected hidden>Choose User ID</option>
-                        <option value="data">Hook up to Database</option>
-                    </select>
-                </div>-->
-
+    <div class="form-group">
+        <label for="userDropDown">Submitted By:</label>
+        <select class="form-control" id="techUN">
+            <option value="" disabled selected hidden>Choose User ID</option>
+            <option value="data">Hook up to Database</option>
+        </select>
+    </div>-->
                 <!-- Building dropdown -->
                 <div class="form-group">
                     <label for="buildingDropDown">Building:</label>
@@ -76,39 +75,40 @@
                         <option value="admin">Admin</option>
                         <option value="library">Library</option>
                     </select>
-                </div>
+             
 
                 <!-- Room # -->
-                <div class="form-group">
+      
                     <label for="room">Room #:</label>
                     <input type="number" class="form-control" id="room">
-                </div>
+         
 
                 <!-- Extension -->
-                <div class="form-group">
+
                     <label for="phone">Phone</label>
                     <input type="number" class="form-control" id="phone">
-                </div>
+         
 
                 <!-- Short Description -->
-                <div class="form-group">
+               
                     <label for="sDescription">Short Description</label>
                     <input type="text" class="form-control" id="sDescription">
-                </div>
-
-                <div class="form-group">
+                
                     <!-- User's username will be inserted here -->
                     <label for="message">Message from username</label>
                     <textarea class="form-control" id="message" rows="8">Type comments here...</textarea>
+                
+
+                <span class="buttons2">
+                    <button type="submit" class="button">Send</button>
+                    <button type="button" class="button" onclick="location.href='loginTest.html'">Log Off</button>
+                    <!--<div id="cancel"><button type="button" class="button">Cancel</button></div>-->
+
+                </span>
                 </div>
             </form>
 	
-    <span class="buttons2">
-        <button type="submit" class="button">Send</button>
-        <button type="button" class="button" onclick="location.href='loginTest.html'">Log Off</button>
-        <!--<div id="cancel"><button type="button" class="button">Cancel</button></div>-->
-
-    </span>
+    
 	
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
