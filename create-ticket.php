@@ -20,14 +20,18 @@
 	<div id="login">
 		
 		<?php
-			
-			$ticketID=$_POST['ticketID'];
-			$techUN=$_POST['techUN'];
-			$userUN=$_POST['userUN'];
-			$status=$_POST['status'];
-			$building=$_POST['building'];
-			$room=$_POST['room'];
-			$phone=$_POST['phone'];
+			if ($_SERVER['REQUEST_METHOD'] == "POST") {
+				//POST Data assignment
+				$ticketID=$_POST['ticketID'];
+				$techUN=$_POST['techUN'];
+				$userUN=$_POST['userUN'];
+				$status=$_POST['status'];
+				$building=$_POST['building'];
+				$room=$_POST['room'];
+				$phone=$_POST['phone'];
+				
+				
+			}
 			
 			/*
 			$ticketID="123456712";

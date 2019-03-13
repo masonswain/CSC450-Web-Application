@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 
 <html lang="en">
 <head>
@@ -28,52 +28,80 @@
             <div id="viewTickets"><button type="button" class="button" onclick="location.href='ViewTicket.html'">View Tickets</button></div>
         </span>
 	<br><br><br>
-			<form>
-				<!-- Ticket # -->
-				<div class="form-group">
-					<label for="ticketID">Ticket #:</label>
-					<input type="text" class="form-control" id="ticketID" placeholder="INCXXXXXX">
-				</div>
-				<!-- Submitted By -->
-				<div class="form-group">
-					<label for="submittedBy">Submitted By:</label>
-					<select class="form-control" id="userDropDown">
-						<option value="" disabled selected hidden>Choose User ID</option>
-						<option value="data">Hook up to Database</option>
-					</select>
-				</div>
-				<!-- Building dropdown -->
-				<div class="form-group">
-					<label for="buildingDropDown">Building:</label>
-					<select class="form-control" id="buildingDropDown">
-						<option value="" disabled selected hidden>Choose Building</option>
-						<option value="main">Main</option>
-						<option value="secondary">Secondary</option>
-						<option value="admin">Admin</option>
-						<option value="library">Library</option>
-					</select>
-				</div>
-				<!-- Room # -->
-				<div class="form-group">
-					<label for="room">Room #:</label>
-					<input type="number" class="form-control" id="room">
-				</div>
-				<!-- Extension -->
-				<div class="form-group">
-					<label for="extension">Extension</label>
-					<input type="number" class="form-control" id="extension">
-				</div>
-				<!-- Short Description -->
-				<div class="form-group">
-					<label for="sDescription">Short Description</label>
-					<input type="text" class="form-control" id="sDescription">
-				</div>
-				<div class="form-group">
-					<!-- User's username will be inserted here -->
-					<label for="message">Message from username</label>
-					<textarea class="form-control" id="message" rows="8">Type comments here...</textarea>
-				</div>
-			</form>
+            <form>
+                <!-- Ticket # -->
+                <div class="form-group">
+                    <label for="ticketID">Ticket #:</label>
+                    <input type="text" class="form-control" id="ticketID" placeholder="INCXXXXXX">
+                </div>
+
+                <!-- Tech -->
+                <div class="form-group">
+                    <label for="submittedBy">Submitted By:</label>
+                    <input type="text" class="form-control" id="techUN">
+                </div>
+
+                <!-- User -->
+                <div class="form-group">
+                    <label for="submittedBy">Submitted By:</label>
+                    <input type="text" class="form-control" id="userUN">
+                </div>
+
+                <!-- Status -->
+                <div class="form-group">
+                    <label for="status">Building:</label>
+                    <select class="form-control" id="status">
+                        <option value="open">Open</option>
+                        <option value="closed">Closed</option>
+                        <option value="hold">On Hold</option>
+                    </select>
+                </div>
+
+                <!-- Submitted By
+                <div class="form-group">
+                    <label for="userDropDown">Submitted By:</label>
+                    <select class="form-control" id="techUN">
+                        <option value="" disabled selected hidden>Choose User ID</option>
+                        <option value="data">Hook up to Database</option>
+                    </select>
+                </div>-->
+
+                <!-- Building dropdown -->
+                <div class="form-group">
+                    <label for="buildingDropDown">Building:</label>
+                    <select class="form-control" id="building">
+                        <option value="" disabled selected hidden>Choose Building</option>
+                        <option value="main">Main</option>
+                        <option value="secondary">Secondary</option>
+                        <option value="admin">Admin</option>
+                        <option value="library">Library</option>
+                    </select>
+                </div>
+
+                <!-- Room # -->
+                <div class="form-group">
+                    <label for="room">Room #:</label>
+                    <input type="number" class="form-control" id="room">
+                </div>
+
+                <!-- Extension -->
+                <div class="form-group">
+                    <label for="extension">Extension</label>
+                    <input type="number" class="form-control" id="extension">
+                </div>
+
+                <!-- Short Description -->
+                <div class="form-group">
+                    <label for="sDescription">Short Description</label>
+                    <input type="text" class="form-control" id="sDescription">
+                </div>
+
+                <div class="form-group">
+                    <!-- User's username will be inserted here -->
+                    <label for="message">Message from username</label>
+                    <textarea class="form-control" id="message" rows="8">Type comments here...</textarea>
+                </div>
+            </form>
 	
     <span class="buttons2">
         <div id="send"><button type="button" class="button">Send</button></div>
