@@ -23,12 +23,14 @@
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				//POST Data assignment
 				$ticketID=$_POST['ticketID'];
+				$ticketTitle=$_POST['ticketTitle'];
 				$techUN=$_POST['techUN'];
 				$userUN=$_POST['userUN'];
 				$status=$_POST['status'];
 				$building=$_POST['building'];
 				$room=$_POST['room'];
 				$phone=$_POST['phone'];
+
 				
 				
 			}
@@ -59,7 +61,7 @@
 				die("Connection failed: ".$dbConn->connect_error);
 			}
 			
-			$sql = "INSERT INTO TICKET (TICKET_ID, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE) VALUES ('$ticketID', '$techUN', '$userUN', '$status', '$building', '$room', '$phone')";
+			$sql = "INSERT INTO TICKET (TICKET_ID, TICKET_TITLE, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE) VALUES ('$ticketID', '$ticketTitle', '$techUN', '$userUN', '$status', '$building', '$room', '$phone')";
 			$result = mysqli_query($conn, $sql);				
 			if ($result) {
 				echo "New ticket: ".$ticketID." made by ".$techUN." created successfully";

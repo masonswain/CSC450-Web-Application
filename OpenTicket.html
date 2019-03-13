@@ -34,69 +34,59 @@
                     <label for="ticketID">Ticket #:</label>
                     <input type="text" class="form-control" name="ticketID" id="ticketID" placeholder="INCXXXXXX">
 
-
-                    <!-- Tech -->
-
-                    <label for="submittedBy">Submitted By:</label>
-                    <input type="text" class="form-control" name="techUN" id="techUN">
-
-                    <!-- User -->
-
-                    <label for="submittedBy">Submitted By:</label>
-                    <input type="text" class="form-control" name="userUN" id="userUN">
+                <!-- Short Description -->
+                <label for="ticketTitle">Short Description</label>
+                <input type="text" class="form-control" name="ticketTitle" id="ticketTitle">
 
 
-                    <!-- Status -->
+                <!-- Tech -->
 
-                    <label for="status">Building:</label>
-                    <select class="form-control" name="status" id="status">
-                        <option value="open">Open</option>
-                        <option value="closed">Closed</option>
-                        <option value="hold">On Hold</option>
-                    </select>
+                <label for="submittedBy">Submitted By:</label>
+                <input type="text" class="form-control" name="techUN" id="techUN">
 
+                <!-- User -->
 
-                    <!-- Submitted By
-    <div class="form-group">
-        <label for="userDropDown">Submitted By:</label>
-        <select class="form-control" id="techUN">
-            <option value="" disabled selected hidden>Choose User ID</option>
-            <option value="data">Hook up to Database</option>
-        </select>
-    </div>-->
-                    <!-- Building dropdown -->
-
-                    <label for="buildingDropDown">Building:</label>
-                    <select class="form-control" name="building" id="building">
-                        <option value="" disabled selected hidden>Choose Building</option>
-                        <option value="main">Main</option>
-                        <option value="secondary">Secondary</option>
-                        <option value="admin">Admin</option>
-                        <option value="library">Library</option>
-                    </select>
+                <label for="submittedBy">Submitted By:</label>
+                <input type="text" class="form-control" name="userUN" id="userUN">
 
 
-                    <!-- Room # -->
+                <!-- Status -->
 
-                    <label for="room">Room #:</label>
-                    <input type="number" class="form-control" name="room" id="room">
+                <label for="status">Building:</label>
+                <select class="form-control" name="status" id="status">
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                    <option value="hold">On Hold</option>
+                </select>
+
+               <!-- Building dropdown -->
+
+                <label for="buildingDropDown">Building:</label>
+                <select class="form-control" name="building" id="building">
+                    <option value="" disabled selected hidden>Choose Building</option>
+                    <option value="main">Main</option>
+                    <option value="secondary">Secondary</option>
+                    <option value="admin">Admin</option>
+                    <option value="library">Library</option>
+                </select>
+
+                <!-- Room # -->
+
+                <label for="room">Room #:</label>
+                <input type="number" class="form-control" name="room" id="room">
+
+                <!-- Extension -->
+
+                <label for="phone">Phone</label>
+                <input type="number" class="form-control" name="phone" id="phone">
 
 
-                    <!-- Extension -->
 
-                    <label for="phone">Phone</label>
-                    <input type="number" class="form-control" name="phone" id="phone">
-
-
-                    <!-- Short Description -->
-                    <!-- <label for="sDescription">Short Description</label>
-                     <input type="text" class="form-control" id="sDescription">
-                     -->
                     <!-- User's username will be inserted here
-                    <label for="message">Message from username</label>
-                    <textarea class="form-control" id="message" rows="8">Type comments here...</textarea> -->
+    <label for="message">Message from username</label>
+    <textarea class="form-control" id="message" rows="8">Type comments here...</textarea> -->
 
-
+                    <br /><br />
                     <span class="buttons2">
                         <button type="submit" class="button">Send</button>
                         <button type="button" class="button" onclick="location.href='loginTest.html'">Log Off</button>
