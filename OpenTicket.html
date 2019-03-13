@@ -30,34 +30,33 @@
 	<br><br><br>
             <form action="create-ticket.php" method="post">
                 <!-- Ticket # -->
-                <div class="form-group">
+                <div class="newTicket">
                     <label for="ticketID">Ticket #:</label>
-                    <input type="text" class="form-control" id="ticketID" placeholder="INCXXXXXX">
-                </div>
+                    <input type="text" class="form-control" name="ticketID" id="ticketID" placeholder="INCXXXXXX">
 
-                <!-- Tech -->
-                <div class="form-group">
+
+                    <!-- Tech -->
+
                     <label for="submittedBy">Submitted By:</label>
-                    <input type="text" class="form-control" id="techUN">
-                </div>
+                    <input type="text" class="form-control" name="techUN" id="techUN">
 
-                <!-- User -->
-                <div class="form-group">
+                    <!-- User -->
+
                     <label for="submittedBy">Submitted By:</label>
-                    <input type="text" class="form-control" id="userUN">
-                </div>
+                    <input type="text" class="form-control" name="userUN" id="userUN">
 
-                <!-- Status -->
-                <div class="form-group">
+
+                    <!-- Status -->
+
                     <label for="status">Building:</label>
-                    <select class="form-control" id="status">
+                    <select class="form-control" name="status" id="status">
                         <option value="open">Open</option>
                         <option value="closed">Closed</option>
                         <option value="hold">On Hold</option>
                     </select>
-                </div>
 
-                <!-- Submitted By
+
+                    <!-- Submitted By
     <div class="form-group">
         <label for="userDropDown">Submitted By:</label>
         <select class="form-control" id="techUN">
@@ -65,46 +64,45 @@
             <option value="data">Hook up to Database</option>
         </select>
     </div>-->
-                <!-- Building dropdown -->
-                <div class="form-group">
+                    <!-- Building dropdown -->
+
                     <label for="buildingDropDown">Building:</label>
-                    <select class="form-control" id="building">
+                    <select class="form-control" name="building" id="building">
                         <option value="" disabled selected hidden>Choose Building</option>
                         <option value="main">Main</option>
                         <option value="secondary">Secondary</option>
                         <option value="admin">Admin</option>
                         <option value="library">Library</option>
                     </select>
-             
 
-                <!-- Room # -->
-      
+
+                    <!-- Room # -->
+
                     <label for="room">Room #:</label>
-                    <input type="number" class="form-control" id="room">
-         
+                    <input type="number" class="form-control" name="room" id="room">
 
-                <!-- Extension -->
+
+                    <!-- Extension -->
 
                     <label for="phone">Phone</label>
-                    <input type="number" class="form-control" id="phone">
-         
+                    <input type="number" class="form-control" name="phone" id="phone">
 
-                <!-- Short Description -->
-               
-                    <label for="sDescription">Short Description</label>
-                    <input type="text" class="form-control" id="sDescription">
-                
-                    <!-- User's username will be inserted here -->
+
+                    <!-- Short Description -->
+                    <!-- <label for="sDescription">Short Description</label>
+                     <input type="text" class="form-control" id="sDescription">
+                     -->
+                    <!-- User's username will be inserted here
                     <label for="message">Message from username</label>
-                    <textarea class="form-control" id="message" rows="8">Type comments here...</textarea>
-                
+                    <textarea class="form-control" id="message" rows="8">Type comments here...</textarea> -->
 
-                <span class="buttons2">
-                    <button type="submit" class="button">Send</button>
-                    <button type="button" class="button" onclick="location.href='loginTest.html'">Log Off</button>
-                    <!--<div id="cancel"><button type="button" class="button">Cancel</button></div>-->
 
-                </span>
+                    <span class="buttons2">
+                        <button type="submit" class="button">Send</button>
+                        <button type="button" class="button" onclick="location.href='loginTest.html'">Log Off</button>
+                        <!--<div id="cancel"><button type="button" class="button">Cancel</button></div>-->
+
+                    </span>
                 </div>
             </form>
 	

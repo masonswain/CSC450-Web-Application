@@ -43,19 +43,23 @@
 			$phone="6452";
 			*/
 			
+			//DB CONNECTION CREDENTIALS
 			$servername = "joelknutson.net";
 			$username = "joelknut_csc450";
 			$pw = "CSP@2019";
 			$dbName = "joelknut_csc450";
 
-			$conn = new mysqli($servername, $username, $pw, $dbName);
+			//BUILD CONNECTION STRING
+			//$conn = new mysqli($servername, $username, $pw, $dbName);
+			$conn = mysqli_connect($servername, $username, $pw, $dbName);
 
+			//TRY CONNECTION
 			if($conn->connect_error){
 
 				die("Connection failed: ".$dbConn->connect_error);
 			}
 			
-			$sql = "INSERT INTO TICKET (TICKET_ID, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE) VALUES ('".$ticketID."', '".$techUN."', '".$userUN."', '".$status."', '".$building."', '".$room."', '".$phone."')";
+			$sql = "INSERT INTO TICKET (TICKET_ID, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE) VALUES ('$ticketID', '$techUN', '$userUN', '$status', '$building', '$room', '$phone')";
 			$result = mysqli_query($conn, $sql);				
 			if ($result) {
 				echo "New ticket: ".$ticketID." made by ".$techUN." created successfully";
