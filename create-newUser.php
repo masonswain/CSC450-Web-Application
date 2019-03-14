@@ -59,7 +59,7 @@
 			$result = mysqli_query($conn, $sql);
 			if ($result) {
 				echo "New user: ".$fname." ".$lname." created successfully";
-				echo "<br>";
+				echo "<br><br>";
 				echo '<button type="button" class="button" onclick="';
 				echo "location.href='index.html'";
 				echo '">Login</button>';

@@ -64,7 +64,7 @@
 			$sql = "INSERT INTO TICKET (TICKET_ID, TICKET_TITLE, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE) VALUES ('$ticketID', '$ticketTitle', '$techUN', '$userUN', '$status', '$building', '$room', '$phone')";
 			$result = mysqli_query($conn, $sql);				
 			if ($result) {
-				echo "New ticket: ".$ticketID." made by ".$techUN." created successfully";
+				echo "New ticket: ".$ticketID." made by ".$userUN." created successfully";
 				echo "<br>";
 			} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;
