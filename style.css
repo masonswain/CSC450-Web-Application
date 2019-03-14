@@ -2,9 +2,9 @@ body {
 	color: white !important;
 	background-color: #660000 !important;
 	font-family: "Arial";
-	margin: auto !important;
-	width: 50% !important;
-	text-align: center !important;
+	margin: auto ;
+	width: 50% ;
+	text-align: center ;
 	padding-right: 14%;
 	padding-left: 14%;
 }
@@ -25,4 +25,11 @@ body {
 	padding-top: 25%;
 	padding-right: 5%;
 	padding-left: 5%;
+}
+
+.logout {
+	display: inline;
+	position: absolute;
+	top: 0;
+	right: 0;
 }

@@ -16,18 +16,24 @@ session_start();
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
        <!--Test-->
 
-</head>
 
+<div class="logout">
+	<h3>
+		<?php
+			echo "User: $_SESSION[currentFirstName] $_SESSION[currentLastName]";
+		?>
+	</h3>
+	<form action="logout.php">
+		<input type="submit" class="button" value="Logout"/>
+	</form>
+</div>
+
+</head>
 <body>
 
 	<h1>South St Paul Technology</h1>
-	<h2>
-		<?php
-		//echo "Welcome $_SESSION[currentUser]";
-		echo "Welcome $_SESSION[currentFirstName] $_SESSION[currentLastName]";
-		?>
-	</h2>
-    <h3>Home</h3>
+	
+    <h2>Home</h2>
 	<span class="notifications">
 		<!-- The following values will be inserted from the database -->
 		<div id="ticketsOpen">1 Ticket(s) Open</div>
