@@ -1,5 +1,16 @@
 ﻿<?php
 session_start();
+$servername = "joelknutson.net";
+$username = "joelknut_csc450";
+$pw = "CSP@2019";
+$dbName = "joelknut_csc450";
+$conn = new mysqli($servername, $username, $pw, $dbName);
+$query = "SELECT COUNT(TICKET_ID) as 'total' FROM TICKET WHERE USER_UN= '" .$_SESSION['currentUser']."'";
+$result = mysql_query($query);
+if ($result) {
+	$row = mysql_fetch_assoc($result);
+	$count = $row['total'];
+}
 ?>
 <!doctype html>
 
@@ -36,12 +47,15 @@ session_start();
     <h2>Home</h2>
 	<span class="notifications">
 		<!-- The following values will be inserted from the database -->
-		<div id="ticketsOpen">1 Ticket(s) Open</div>
+		<div id="ticketsOpen">
+			<?php
+				echo $count;
+			?> Ticket(s) Open</div>
 		<div id="messagesWaiting">1 Messages(s) Waiting</div>
 	</span>
 	<br><br>
 	<span class="buttons">
-		<div id="openTicket"><button type="button" class="button" onClick="location.href='OpenTicket.html'">Open Ticket</button></div>
+		<div id="openTicket"><button type="button" class="button" onClick="location.href='OpenTicket.php'">Open Ticket</button></div>
 		<div id="viewTickets"><button type="button" class="button" onClick="location.href='ViewTicket.html'">View Tickets</button></div>
 	</span>
 	<br><br>

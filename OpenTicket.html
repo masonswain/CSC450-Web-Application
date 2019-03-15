@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿<?php
+session_start();
+?>
+<!doctype html>
 
 <html lang="en">
 <head>
@@ -12,6 +15,17 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
+
+    <div class="logout">
+	    <h3>
+		    <?php
+			    echo "User: $_SESSION[currentFirstName] $_SESSION[currentLastName]";
+		    ?>
+	    </h3>
+	    <form action="logout.php">
+		    <input type="submit" class="button" value="Logout"/>
+	    </form>
+    </div>
 </head>
 
 <body>
@@ -24,7 +38,7 @@
 	</span>
 	<br><br>
         <span class="buttons">
-            <div id="openTicket"><button type="button" class="button" onclick="location.href='OpenTicket.html'">Open Ticket</button></div>
+            <div id="openTicket"><button type="button" class="button" onclick="location.href='OpenTicket.php'">Open Ticket</button></div>
             <div id="viewTickets"><button type="button" class="button" onclick="location.href='ViewTicket.html'">View Tickets</button></div>
         </span>
 	<br><br><br>
