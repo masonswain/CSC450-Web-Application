@@ -56,7 +56,7 @@ if ($result) {
 	<br><br>
 	<span class="buttons">
 		<div id="openTicket"><button type="button" class="button" onClick="location.href='OpenTicket.php'">Open Ticket</button></div>
-		<div id="viewTickets"><button type="button" class="button" onClick="location.href='ViewTicket.html'">View Tickets</button></div>
+		<div id="viewTickets"><button type="button" class="button" onClick="location.href='ViewTicket.php'">View Tickets</button></div>
 	</span>
 	<br><br>
 	
