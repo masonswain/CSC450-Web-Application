@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿<?php
+session_start();
+?>
+<!doctype html>
 
 <html lang="en">
 <head>
@@ -12,6 +15,17 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
+
+    <div class="logout">
+	    <h3>
+		    <?php
+			    echo "User: $_SESSION[currentFirstName] $_SESSION[currentLastName]";
+		    ?>
+	    </h3>
+	    <form action="logout.php">
+		    <input type="submit" class="button" value="Logout"/>
+	    </form>
+    </div>
 </head>
 
 <body>
@@ -24,7 +38,7 @@
 	</span>
 	<br><br>
         <span class="buttons">
-            <div id="openTicket"><button type="button" class="button" onclick="location.href='OpenTicket.html'">Open Ticket</button></div>
+            <div id="openTicket"><button type="button" class="button" onclick="location.href='OpenTicket.php'">Open Ticket</button></div>
             <div id="viewTickets"><button type="button" class="button" onclick="location.href='ViewTicket.html'">View Tickets</button></div>
         </span>
 	<br><br><br>
@@ -41,7 +55,7 @@
 
                 <!-- Tech -->
 
-                <label for="submittedBy">Submitted By:</label>
+                <label for="submittedBy">Assigned To:</label>
                 <input type="text" class="form-control" name="techUN" id="techUN">
 
                 <!-- User -->
@@ -52,7 +66,7 @@
 
                 <!-- Status -->
 
-                <label for="status">Building:</label>
+                <label for="status">Status:</label>
                 <select class="form-control" name="status" id="status">
                     <option value="open">Open</option>
                     <option value="closed">Closed</option>
@@ -89,7 +103,7 @@
                     <br /><br />
                     <span class="buttons2">
                         <button type="submit" class="button">Send</button>
-                        <button type="button" class="button" onclick="location.href='loginTest.html'">Log Off</button>
+                        <button type="button" class="button" onclick="location.href='home.php'">Cancel</button>
                         <!--<div id="cancel"><button type="button" class="button">Cancel</button></div>-->
 
                     </span>

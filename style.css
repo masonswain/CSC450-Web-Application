@@ -26,3 +26,10 @@ body {
 	padding-right: 5%;
 	padding-left: 5%;
 }
+
+.logout {
+	display: inline;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
