@@ -69,6 +69,10 @@
 			} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;
 			}
+			echo "<br><br><span class='buttons'>
+				<button type='submit' class='button'onclick='location.href=\"OpenTicket.html\"'>Open Another Ticket</button>
+                <button type='button' class='button' onclick='location.href=\"home.php\"'>Home</button>
+				</span>";
 			$conn->close();
 
 	?>
