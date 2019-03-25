@@ -25,7 +25,6 @@ $tickets = $row[0];
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
        <!--Test-->
 
-
 <div class="logout">
 	<h3>
 		<?php
