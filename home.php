@@ -5,12 +5,10 @@ $username = "joelknut_csc450";
 $pw = "CSP@2019";
 $dbName = "joelknut_csc450";
 $conn = new mysqli($servername, $username, $pw, $dbName);
-$query = "SELECT COUNT(TICKET_ID) as 'total' FROM TICKET WHERE USER_UN= '" .$_SESSION['currentUser']."'";
-$result = mysql_query($query);
-if ($result) {
-	$row = mysql_fetch_assoc($result);
-	$count = $row['total'];
-}
+$sql = "SELECT COUNT(*) FROM TICKET WHERE USER_UN = '".$_SESSION['currentUser']."'";
+$result=$conn->query($sql);
+$row = mysqli_fetch_array($result);
+$tickets = $row[0];
 ?>
 <!doctype html>
 
@@ -48,9 +46,10 @@ if ($result) {
 	<span class="notifications">
 		<!-- The following values will be inserted from the database -->
 		<div id="ticketsOpen">
-			<?php
-				echo $count;
-			?> Ticket(s) Open</div>
+		<?php
+			echo $tickets;
+		?>
+		 Ticket(s) Open</div>
 		<div id="messagesWaiting">1 Messages(s) Waiting</div>
 	</span>
 	<br><br>
