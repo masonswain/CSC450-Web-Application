@@ -1,5 +1,8 @@
 ﻿<?php
 session_start();
+if($_SESSION['status'] != "Active") {
+	header("Location: index.html");
+}	
 $servername = "joelknutson.net";
 $username = "joelknut_csc450";
 $pw = "CSP@2019";

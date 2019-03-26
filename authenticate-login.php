@@ -1,7 +1,6 @@
 <?php
 // creating session
 session_start();
-
 $servername = "joelknutson.net";
 $username = "joelknut_csc450";
 $pw = "CSP@2019";
@@ -11,6 +10,7 @@ $conn = new mysqli($servername, $username, $pw, $dbName);
 $user=$_POST['un'];
 $authpw=$_POST['authpw'];
 $_SESSION["currentUser"] = $user;
+$_SESSION['status'] = "Active";
 $name = "SELECT FNAME, LNAME FROM USER WHERE USERNAME='$user'";
 $resultOfQuery = mysqli_query($conn, $name);
 
