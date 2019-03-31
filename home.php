@@ -75,14 +75,14 @@ $tickets = $row[0];
 			//
 			echo "<span>";
 				echo "Assigned Tickets";
-				echo "<table style='width:100%'>";
-					echo "<tr>";
-						echo "<th>Ticket #</th>";
-						echo "<th>Title</th>";
-						echo "<th>Status</th>";
-						echo "<th>Affected User</th>";
 						//if condition for no ticket scenario
 						if($result->num_rows > 0){
+							echo "<table style='width:100%'>";
+							echo "<tr>";
+							echo "<th>Ticket #</th>";
+							echo "<th>Title</th>";
+							echo "<th>Status</th>";
+							echo "<th>Affected User</th>";
 							//while loop formats table data
 							while($row = $result->fetch_assoc()){
 								//ticket ID
@@ -107,10 +107,12 @@ $tickets = $row[0];
 						}
 						//if there are no tickets found
 						else {
+							echo "<br>";
 							echo "No tickets are currently assigned to: ";
 							echo $_SESSION['currentUser'].$conn->error;
+							echo "<br>";
+							echo "<br>";
 						}
-
 					echo "</tr>";
 				echo "</table>";
 			echo "</span>";
@@ -126,14 +128,14 @@ $tickets = $row[0];
 			//
 			echo "<span>";
 				echo "Your current Tickets";
-				echo "<table style='width:100%'>";
-					echo "<tr>";
-						echo "<th>Ticket #</th>";
-						echo "<th>Title</th>";
-						echo "<th>Status</th>";
-						echo "<th>Affected User</th>";
 						//if condition for no ticket scenario
 						if($result->num_rows > 0){
+							echo "<table style='width:100%'>";
+							echo "<tr>";
+							echo "<th>Ticket #</th>";
+							echo "<th>Title</th>";
+							echo "<th>Status</th>";
+							echo "<th>Affected User</th>";
 							//while loop formats table data
 							while($row = $result->fetch_assoc()){
 								//ticket ID
@@ -158,10 +160,10 @@ $tickets = $row[0];
 						}
 						//if there are no tickets found
 						else {
+							echo "<br>";
 							echo "No tickets are currently assigned to: ";
 							echo $_SESSION['currentUser'].$conn->error;
 						}
-
 					echo "</tr>";
 				echo "</table>";
 			echo "</span>";
