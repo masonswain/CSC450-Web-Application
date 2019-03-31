@@ -39,3 +39,11 @@ table {
 	top: 0;
 	right: 0;
 }
+
+.scrollable {
+	overflow-y: scroll;
+}
+
+.scrollable select {
+	border: none;
+}
