@@ -45,9 +45,7 @@ session_start();
             <form action="create-ticket.php" method="post">
                 <!-- Ticket # -->
                 <div class="newTicket">
-                    <label for="ticketID">Ticket #:</label>
-                    <input type="text" class="form-control" name="ticketID" id="ticketID" placeholder="INCXXXXXX">
-
+ 
                 <!-- Short Description -->
                 <label for="ticketTitle">Short Description</label>
                 <input type="text" class="form-control" name="ticketTitle" id="ticketTitle">

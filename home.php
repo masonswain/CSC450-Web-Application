@@ -62,77 +62,114 @@ $tickets = $row[0];
 
 	<br><br>
 	
+	<div>
 	<?php
-		
-			//INCOMING POST DATA
-			$techUN=$_POST['techUN'];
-			$status=$_POST['status'];
-			
-			//USED FOR TESTING
-			/*
-			$techUN="jknutson";
-			$status="Active";
-			*/
-			
-			//SERVER CONNECTION CREDENTIALS
-			$servername = "joelknutson.net";
-			$username = "joelknut_csc450";
-			$pw = "CSP@2019";
-			$dbName = "joelknut_csc450";
-
-			//BUILD CONNECTION STRING
-			$conn = new mysqli($servername, $username, $pw, $dbName);
-
-			//TRY CONNECTION
-			if($conn->connect_error){
-
-				die("Connection failed: ".$dbConn->connect_error);
-			}
-			
+			//GET TICKETS ASSIGNED TO TECH USER
 			//BUILD QUERY STRING
-			$sql = "SELECT * FROM TICKET WHERE TECH_UN='".$techUN."' AND STATUS='".$status."'";
+			$sql2 = "SELECT * FROM TICKET WHERE TECH_UN='".$_SESSION['currentUser']."'";
 
 			//ASSIGN DATA TO ARRAY
-			$result=$conn->query($sql);			
+			$result=$conn->query($sql2);			
 			
-			//PARSE ARRAY AND DISPLAY DATA
+			//CREATE TABLE AND DISPLAY DATA
 			//
-			echo "Tickets";
-			echo "<br/>";
-			echo "-------------------------------";
-			echo "<br/>";
+			echo "<span>";
+				echo "Assigned Tickets";
+				echo "<table style='width:100%'>";
+					echo "<tr>";
+						echo "<th>Ticket #</th>";
+						echo "<th>Title</th>";
+						echo "<th>Status</th>";
+						echo "<th>Affected User</th>";
+						//if condition for no ticket scenario
+						if($result->num_rows > 0){
+							//while loop formats table data
+							while($row = $result->fetch_assoc()){
+								//ticket ID
+								echo "<tr>";
+									echo "<th>";
+									echo $row["TICKET_ID"];
+									echo "</th>";
+									//title
+									echo "<th>";
+									echo $row["TICKET_TITLE"];
+									echo "</th>";
+									//status
+									echo "<th>";
+									echo $row["STATUS"];
+									echo "</th>";
+									//affected user
+									echo "<th>";
+									echo $row["USER_UN"];
+									echo "</th>";
+								echo "</tr>";
+							}
+						}
+						//if there are no tickets found
+						else {
+							echo "No tickets are currently assigned to: ";
+							echo $_SESSION['currentUser'].$conn->error;
+						}
+
+					echo "</tr>";
+				echo "</table>";
+			echo "</span>";
+
+			//GET TICKETS ASSIGNED TO USER
+			//BUILD QUERY STRING
+			$sql2 = "SELECT * FROM TICKET WHERE USER_UN='".$_SESSION['currentUser']."'";
+
+			//ASSIGN DATA TO ARRAY
+			$result=$conn->query($sql2);			
 			
-			if ($result->num_rows > 0){
-					
-				while($row = $result->fetch_assoc()){
+			//CREATE TABLE AND DISPLAY DATA
+			//
+			echo "<span>";
+				echo "Your current Tickets";
+				echo "<table style='width:100%'>";
+					echo "<tr>";
+						echo "<th>Ticket #</th>";
+						echo "<th>Title</th>";
+						echo "<th>Status</th>";
+						echo "<th>Affected User</th>";
+						//if condition for no ticket scenario
+						if($result->num_rows > 0){
+							//while loop formats table data
+							while($row = $result->fetch_assoc()){
+								//ticket ID
+								echo "<tr>";
+									echo "<th>";
+									echo $row["TICKET_ID"];
+									echo "</th>";
+									//title
+									echo "<th>";
+									echo $row["TICKET_TITLE"];
+									echo "</th>";
+									//status
+									echo "<th>";
+									echo $row["STATUS"];
+									echo "</th>";
+									//affected user
+									echo "<th>";
+									echo $row["USER_UN"];
+									echo "</th>";
+								echo "</tr>";
+							}
+						}
+						//if there are no tickets found
+						else {
+							echo "No tickets are currently assigned to: ";
+							echo $_SESSION['currentUser'].$conn->error;
+						}
 
-					echo "<a href=\"return-ticket-notes.php?ticketID=".$row["TICKET_ID"]."\">";
-					echo "Ticket ID:  ";
-					echo $row["TICKET_ID"];
-					echo "<br/>";
-					echo "Title:  ";
-					echo $row["TICKET_TITLE"];
-					echo "<br/>";
-					echo "Status:  ";
-					echo $row["STATUS"];
-					echo "<br/>";
-					echo "End User:  ";
-					echo $row["USER_UN"];
-					echo "<br/>";
-					echo "-------------------------------";
-					echo "</a>";
-					echo "<br/>";
-					
-				}
-
-			} else{
-				echo "** No Tickets Found **".$conn->error;
-			}
+					echo "</tr>";
+				echo "</table>";
+			echo "</span>";
 
 			$conn->close();
 
 	?>
-	
+	</div>
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
