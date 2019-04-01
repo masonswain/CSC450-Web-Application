@@ -27,7 +27,7 @@ if (mysqli_num_rows($resultOfQuery) > 0) {
 <head>
 	<meta charset="utf-8">
 
-	<title>South St. Paul Technology - Login</title>
+	<title>South St. Paul Technology - Authenticate Login</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="style.css">

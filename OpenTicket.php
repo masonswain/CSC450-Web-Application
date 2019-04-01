@@ -19,7 +19,7 @@ $tickets = $row[0];
 <head>
 	<meta charset="utf-8">
 
-	<title>South St. Paul Technology - Home Page</title>
+	<title>South St. Paul Technology - Open Ticket</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -43,7 +43,7 @@ $tickets = $row[0];
 
 	<h1>South St Paul Technology</h1>
 	
-    <h2>Home</h2>
+    <h2>Create New Issue</h2>
 	<span class="notifications">
 		<div id="ticketsOpen">
 		<?php 

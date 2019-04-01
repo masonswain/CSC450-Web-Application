@@ -19,7 +19,7 @@ $tickets = $row[0];
 <head>
 	<meta charset="utf-8">
 
-	<title>South St. Paul Technology - Home Page</title>
+	<title>South St. Paul Technology - View Ticket</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -43,7 +43,7 @@ $tickets = $row[0];
 
 	<h1>South St Paul Technology</h1>
 	
-    <h2>Home</h2>
+    <h2>Ticket Details</h2>
 	<span class="notifications">
 		<div id="ticketsOpen">
 		<?php 
@@ -58,41 +58,57 @@ $tickets = $row[0];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $ticketID=$_POST['selectedID'];
         }
-
+        $sql2 = "SELECT TICKET_TITLE, TECH_UN, STATUS, BUILDING, ROOM, PHONE FROM TICKET WHERE TICKET_ID = '".$_POST['selectedID']."'";
+        $result2=$conn->query($sql2);
+        if (mysqli_num_rows($result2) > 0) {
+	        $data = mysqli_fetch_array($result2);
+        }
 
     ?>
 	<br><br><br>
         <form action="add-note.php" method="post" id="viewTicket">
             <table width="100%" border='3'>
                 <tr><!-- Ticket ID -->
-                    <th width="50%"><label>Ticket ID</label></th>
+                    <th width="25%"><label>Ticket ID</label></th>
                     <td><label>
                     <?php 
-                        echo $ticketID; ?></label></td>
+                        echo $_POST['selectedID']; ?></label></td>
                 </tr>
                 <tr><!-- Short Description -->
-                    <th width="50%"><label for="ticketTitle">Title</label></th>
-                    <td><span class="label" id="ticketTitle"><!-- Value from POST --></span></td>
+                    <th width="25%"><label>Title</label></th>
+                    <td><label>
+                    <?php 
+                        echo $data['TICKET_TITLE']; ?></label></td>
                 </tr>
                 <tr><!-- Assignee -->
-                    <th width="50%"><label for="tech">Assingee</label></th>
-                    <td><span class="label" id="tech"><!-- Value from POST --></span></td>
+                    <th width="25%"><label>Assingee</label></th>
+                    <td><label>
+                    <?php 
+                        echo $data['TECH_UN']; ?></label></td>
                 </tr>
                 <tr><!-- Status -->
-                    <th width="50%"><label for="status">Status</label></th>
-                    <td><span class="label" id="status"><!-- Value from POST --></span></td>
+                    <th width="25%"><label>Status</label></th>
+                    <td><label>
+                    <?php 
+                        echo $data['STATUS']; ?></label></td>
                 </tr>
                 <tr><!-- Building -->
-                    <th width="50%"><label for="building">Building</label></th>
-                    <td><span class="label" id="building"><!-- Value from POST --></span></td>
+                    <th width="25%"><label>Building</label></th>
+                    <td><label>
+                    <?php 
+                        echo $data['BUILDING']; ?></label></td>
                 </tr>
                 <tr><!-- Room -->
-                    <th width="50%"><label for="room">Room</label></th>
-                    <td><span class="label" id="room"><!-- Value from POST --></span></td>
+                    <th width="25%"><label>Room</label></th>
+                    <td><label>
+                    <?php 
+                        echo $data['ROOM']; ?></label></td>
                 </tr>
-                <tr><!-- Building -->
-                    <th width="50%"><label for="phone">Phone</label></th>
-                    <td><span class="label" id="phone"><!-- Value from POST --></span></td>
+                <tr><!-- Phone -->
+                    <th width="25%"><label>Phone</label></th>
+                    <td><label>
+                    <?php 
+                        echo $data['PHONE']; ?></label></td>
                 </tr>
             </table> 
             <table width="100%" border='3'>

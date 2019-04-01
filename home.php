@@ -118,18 +118,17 @@ $tickets = $row[0];
 
 			//GET TICKETS ASSIGNED TO USER
 			//BUILD QUERY STRING
-			$sql2 = "SELECT * FROM TICKET WHERE USER_UN='".$_SESSION['currentUser']."'";
+			$sql3 = "SELECT * FROM TICKET WHERE USER_UN='".$_SESSION['currentUser']."'";
 
 			//ASSIGN DATA TO ARRAY
-			$result=$conn->query($sql2);			
+			$result=$conn->query($sql3);	
 			
 			//CREATE TABLE AND DISPLAY DATA
 			//
 			echo "<span>";
 				echo "Your current Tickets";
 						//if condition for no ticket scenario
-						if($result->num_rows > 0){
-							$thisID = $row["TICKET_ID"];
+						if($result->num_rows > 0){							
 							echo "<table style='width:100%' border='3'>";
 							echo "<tr>";
 							echo "<th>View</th>";
@@ -139,12 +138,17 @@ $tickets = $row[0];
 							echo "<th>Affected User</th>";
 							//while loop formats table data
 							while($row = $result->fetch_assoc()){
+								$id = $row["TICKET_ID"];
 								// link to view ticket
 								echo "<tr>";
-								echo "<td><form action='ViewTicket.php' method='post'><input name='viewTicket' type='submit' id='viewTicket' value='View this ticket' class='button' style='float:left;color:white;cursor:pointer;'";
-								echo "<input type='hidden' name='selectedID' value='$thisID'/></form></td>";
+								echo "<td><form action='ViewTicket.php' method='post'><input name='viewTicket' type='submit' id='viewTicket' value='View this ticket' class='button' style='color:white;cursor:pointer;'";
+								//echo "<input type='text' name='selectedID' value='$id;'/>";
+								echo "</td>";
 								//ticket ID
-								echo "<td>";
+								echo "<td>";?>
+								<input type="hidden" name="selectedID" value="<?php echo (isset($id)) ? $id: ''?>"/>
+								<?php
+								echo "</form>";						
 								echo $row["TICKET_ID"];
 								echo "</td>";
 								//title
