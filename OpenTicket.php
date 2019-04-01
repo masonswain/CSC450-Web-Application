@@ -48,7 +48,7 @@ $tickets = $row[0];
 		<div id="ticketsOpen">
 		<?php 
 			echo $tickets; ?> Ticket(s) Open</div>
-		<div id="messagesWaiting">1 Messages(s) Waiting</div>
+		<div id="messagesWaiting"> Messages(s) Waiting</div>
 	</span>
 	<br><br>
 		<div id="openTicket"><button type="button" class="button" style="float:left;color:white;cursor:pointer;" onClick="location.href='OpenTicket.php'">Open Ticket</button></div>

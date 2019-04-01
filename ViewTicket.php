@@ -24,9 +24,6 @@ $tickets = $row[0];
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="style.css">
 
-    <!-- Latest compiled and minified CSS -->
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
-
 <div class="logout">
 	<h3>
 		<?php
@@ -48,7 +45,7 @@ $tickets = $row[0];
 		<div id="ticketsOpen">
 		<?php 
 			echo $tickets; ?> Ticket(s) Open</div>
-		<div id="messagesWaiting">1 Messages(s) Waiting</div>
+		<div id="messagesWaiting"> Messages(s) Waiting</div>
 	</span>
 	<br><br>
 	<span class="buttons">

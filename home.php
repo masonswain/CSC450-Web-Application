@@ -50,7 +50,7 @@ $tickets = $row[0];
 		<div id="ticketsOpen">
 		<?php
 			echo $tickets; ?> Ticket(s) Open</div>
-		<div id="messagesWaiting">1 Messages(s) Waiting</div>
+		<div id="messagesWaiting"> Messages(s) Waiting</div>
 	</span>
 	<br><br>
 
