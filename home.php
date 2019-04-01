@@ -25,39 +25,39 @@ $tickets = $row[0];
 	<link rel="stylesheet" type="text/css" href="style.css">
 
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-       <!--Test-->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
 
 <div class="logout">
 	<h3>
 		<?php
-			echo "User: $_SESSION[currentFirstName] $_SESSION[currentLastName]";
+			echo "User: $_SESSION[currentFirstName]
+			 $_SESSION[currentLastName]";
 		?>
 	</h3>
 	<form action="logout.php">
-		<input type="submit" class="button" value="Logout"/>
+		<input type="submit" class="button" style="float:left;color:white;cursor:pointer;" value="Logout"/>
 	</form>
 </div>
 
-</head>
-<body>
+<h1>South St Paul Technology</h1>
 
-	<h1>South St Paul Technology</h1>
-	
+</head>
+
+<body>
     <h2>Home</h2>
 	<span class="notifications">
 		<!-- The following values will be inserted from the database -->
 		<div id="ticketsOpen">
 		<?php
-			echo $tickets;
-		?>
-		 Ticket(s) Open</div>
+			echo $tickets; ?> Ticket(s) Open</div>
 		<div id="messagesWaiting">1 Messages(s) Waiting</div>
 	</span>
 	<br><br>
-	<span class="buttons">
-		<div id="openTicket"><button type="button" class="button" onClick="location.href='OpenTicket.php'">Open Ticket</button></div>
-	</span>
+
+
+				<button type="button" class="button" style="float:left;color:white;cursor:pointer;"onClick="location.href='OpenTicket.php'">Open Ticket</button>
+
+
 
 	<br><br>
 	
@@ -129,31 +129,36 @@ $tickets = $row[0];
 				echo "Your current Tickets";
 						//if condition for no ticket scenario
 						if($result->num_rows > 0){
-							echo "<table style='width:100%'>";
+							$thisID = $row["TICKET_ID"];
+							echo "<table style='width:100%' border='3'>";
 							echo "<tr>";
-							echo "<th>Ticket #</th>";
+							echo "<th>View</th>";
+							echo "<th>Ticket ID</th>";
 							echo "<th>Title</th>";
 							echo "<th>Status</th>";
 							echo "<th>Affected User</th>";
 							//while loop formats table data
 							while($row = $result->fetch_assoc()){
-								//ticket ID
+								// link to view ticket
 								echo "<tr>";
-									echo "<th>";
-									echo $row["TICKET_ID"];
-									echo "</th>";
-									//title
-									echo "<th>";
-									echo $row["TICKET_TITLE"];
-									echo "</th>";
-									//status
-									echo "<th>";
-									echo $row["STATUS"];
-									echo "</th>";
-									//affected user
-									echo "<th>";
-									echo $row["USER_UN"];
-									echo "</th>";
+								echo "<td><form action='ViewTicket.php' method='post'><input name='viewTicket' type='submit' id='viewTicket' value='View this ticket' class='button' style='float:left;color:white;cursor:pointer;'";
+								echo "<input type='hidden' name='selectedID' value='$thisID'/></form></td>";
+								//ticket ID
+								echo "<td>";
+								echo $row["TICKET_ID"];
+								echo "</td>";
+								//title
+								echo "<td>";
+								echo $row["TICKET_TITLE"];
+								echo "</td>";
+								//status
+								echo "<td>";
+								echo $row["STATUS"];
+								echo "</td>";
+								//affected user
+								echo "<td>";
+								echo $row["USER_UN"];
+								echo "</td>";
 								echo "</tr>";
 							}
 						}

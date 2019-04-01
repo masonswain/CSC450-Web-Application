@@ -1,5 +1,7 @@
+<?php
+session_start();
+?>
 <!doctype html>
-
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -22,17 +24,11 @@
 		<?php
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				//POST Data assignment
-				$ticketID=$_POST['ticketID'];
 				$ticketTitle=$_POST['ticketTitle'];
 				$techUN=$_POST['techUN'];
-				$userUN=$_POST['userUN'];
-				$status=$_POST['status'];
 				$building=$_POST['building'];
 				$room=$_POST['room'];
-				$phone=$_POST['phone'];
-
-				
-				
+				$phone=$_POST['phone'];	
 			}
 			
 			/*
@@ -61,10 +57,10 @@
 				die("Connection failed: ".$dbConn->connect_error);
 			}
 			
-			$sql = "INSERT INTO TICKET (TICKET_ID, TICKET_TITLE, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE) VALUES ('$ticketID', '$ticketTitle', '$techUN', '$userUN', '$status', '$building', '$room', '$phone')";
+			$sql = "INSERT INTO TICKET (TICKET_TITLE, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE) VALUES ('$ticketTitle', '$techUN', '{$_SESSION['currentUser']}', 'Active', '$building', '$room', '$phone')";
 			$result = mysqli_query($conn, $sql);				
 			if ($result) {
-				echo "New ticket: ".$ticketID." made by ".$userUN." created successfully";
+				echo "New ticket: ".$ticketID." made by $_SESSION[currentUser] created successfully";
 				echo "<br>";
 			} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;
@@ -76,8 +72,8 @@
 	?>
 	<br><br>
 	<span class="buttons">
-		<div id="openTicket"><button type="button" class="button" onClick="location.href='OpenTicket.php'">Open Ticket</button></div>
-		<div id="viewTickets"><button type="button" class="button" onClick="location.href='ViewTicket.php'">View Tickets</button></div>
+		<div id="openTicket"><button type="button" class="button" onClick="location.href='OpenTicket.php'">Open Another Ticket</button></div>
+		<div id="viewTickets"><button type="button" class="button" onClick="location.href='home.php'">Home</button></div>
 	</span>	
 	</div>
 	

@@ -1,10 +1,7 @@
 body {
-	color: white !important;
-	background-color: #660000 !important;
+	color: white;
+	background-color: #660000;
 	font-family: "Arial";
-	margin: auto !important;
-	width: 50% !important;
-	text-align: center !important;
 	padding-right: 14%;
 	padding-left: 14%;
 }
@@ -13,9 +10,11 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+	display: block;
+	text-decoration: none;
 }
 
-#ticketsOpen, #openTicket, #send {
+#send {
 	float: left;
 }
 
@@ -23,8 +22,11 @@ table {
 	float: right;
 }
 
-.button {
+button {
 	background-color: #595959;
+	color: white !important;
+	cursor: pointer !important;
+	pointer-events: auto !important;
 }
 
 #login {
@@ -38,6 +40,7 @@ table {
 	position: absolute;
 	top: 0;
 	right: 0;
+	padding-right: 5%;
 }
 
 .scrollable {
@@ -46,4 +49,9 @@ table {
 
 .scrollable select {
 	border: none;
+}
+
+.newTicket {
+	padding-top: 10%;
+	padding-bottom: 10%;
 }
