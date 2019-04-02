@@ -61,6 +61,8 @@ $tickets = $row[0];
 	        $data = mysqli_fetch_array($result2);
         }
 
+        $sql3 = "SELECT * FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."' ORDER BY NOTE_ID DESC";
+        $result3=$conn->query($sql3);
     ?>
 	<br><br><br>
         <form action="add-note.php" method="post" id="viewTicket">
@@ -110,27 +112,45 @@ $tickets = $row[0];
             </table> 
             <table width="100%" border='3'>
                 <tr>
-                    <td><label for="ticketHistory">Ticket History</label></td>
+                    <td><label for="ticketHistory"><h4>Ticket History</h4></label></td>
                 </tr>
                 <tr>
-                    <td><textarea rows="20%" cols="60%" class="form-control" form="viewTicket" name="ticketHistory" id="ticketHistory" readonly><!-- Value from POST --></textarea>
+                    <td><div name="ticketHistory" id="ticketHistory" style="text-align: center; overflow-y: scroll;">
+                        Notes<br>
+                        -------------------------------<br>
+                            <?php
+			                if ($result3->num_rows > 0){
+				                while($row3 = $result3->fetch_assoc()){
+					                echo "From:  ";
+					                echo $row3["OWNER_UN"];
+					                echo "<br/>";
+					                echo $row3["NOTE_ID"];
+					                echo "<br/>";
+					                echo $row3["NOTE"];
+					                echo "<br/>";
+					                echo "-------------------------------";
+					                echo "<br/>";
+				                }
+			                } else {
+				                echo "** No Notes Found **".$conn->error;
+			                }
+                        ?>
+                    </div></td>
                 </tr>
                 <tr>
-                    <td><textarea rows="10%" cols="60%" class="form-control" form="viewTicket" name="note" id="note">Add Message</textarea>
+                    <td><textarea rows="10%" cols="60%" class="form-control" form="viewTicket" name="note" id="note" placeholder="Add Message"></textarea></td>
                 </tr>
             </table>
 
+            <!-- Sending Ticket_ID for inserting note into database -->
+            <input type="hidden" name="ticketID" value="<?php echo (isset($ticketID)) ? $ticketID: ''?>"/>
 
-                    <!-- User's username will be inserted here
-    <label for="message">Message from username</label>
-    <textarea class="form-control" id="message" rows="8">Type comments here...</textarea> -->
 
-                <span class="buttons2">
-                    <button type="submit" style="color:white;cursor:pointer;" class="button">Submit</button>
-                    <button type="button" style="color:white;cursor:pointer;" class="button" onclick="location.href='home.php'">Cancel</button>
-                    <!--<div id="cancel"><button type="button" class="button">Cancel</button></div>-->
-                 </span>
-            </form>
+            <span class="buttons2">
+                <button type="submit" style="color:white;cursor:pointer;" class="button">Submit</button>
+                <button type="button" style="color:white;cursor:pointer;" class="button" onclick="location.href='home.php'">Cancel</button>
+            </span>
+        </form>
 	
     
 	

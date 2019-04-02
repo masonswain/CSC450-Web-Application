@@ -29,6 +29,7 @@ session_start();
 				$building=$_POST['building'];
 				$room=$_POST['room'];
 				$phone=$_POST['phone'];	
+				$note=$_POST['note'];
 			}
 			
 			/*
@@ -53,19 +54,37 @@ session_start();
 
 			//TRY CONNECTION
 			if($conn->connect_error){
-
 				die("Connection failed: ".$dbConn->connect_error);
 			}
 			
 			$sql = "INSERT INTO TICKET (TICKET_TITLE, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE) VALUES ('$ticketTitle', '$techUN', '{$_SESSION['currentUser']}', 'Active', '$building', '$room', '$phone')";
 			$result = mysqli_query($conn, $sql);				
 			if ($result) {
-				echo "New ticket: ".$ticketID." made by $_SESSION[currentUser] created successfully";
+				echo "alert(Ticket made by $_SESSION[currentUser] created successfully);";
 				echo "<br>";
 			} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;
 			}
 
+			//Select the Ticket ID of the most recent ticket created by user
+			$sql2 = "SELECT TICKET_ID FROM TICKET WHERE USER_UN = '".$_SESSION['currentUser']."' ORDER BY TICKET_ID DESC LIMIT 1";
+
+			$result2=$conn->query($sql2);
+		    $row2=$result2->fetch_assoc();
+		    $ticketID=$row2["TICKET_ID"];
+		    //echo "TICKET ID ".$ticketID;
+			
+			
+            //Create Note in NOTE table
+            $sql3="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."')";
+			
+			if ($conn->query($sql3) === TRUE) {
+				echo "alert(Note created successfully);";
+				header("Location: home.php");
+			} 
+			else {
+				echo "Error: " . $sql . "<br>" . $conn->error;
+			}
 
 			$conn->close();
 

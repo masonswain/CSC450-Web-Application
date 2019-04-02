@@ -103,7 +103,7 @@ $tickets = $row[0];
                     </tr>
                     <tr><!-- Additional notes -->
                         <th><label for="note">Additional Information</label></th>
-                        <td><textarea rows="25%" cols="50%" class="form-control" form="newTicket" name="note" id="note">Notes</textarea><br><br></td>
+                        <td><textarea required rows="25%" cols="50%" class="form-control" form="newTicket" name="note" id="note">Notes</textarea><br><br></td>
                     </tr>                             
                 </table>
 

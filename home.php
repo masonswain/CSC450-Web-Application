@@ -53,14 +53,8 @@ $tickets = $row[0];
 		<div id="messagesWaiting"> Messages(s) Waiting</div>
 	</span>
 	<br><br>
-
-
-				<button type="button" class="button" style="float:left;color:white;cursor:pointer;"onClick="location.href='OpenTicket.php'">Open Ticket</button>
-
-
-
+	<button type="button" class="button" style="float:left;color:white;cursor:pointer;"onClick="location.href='OpenTicket.php'">Open Ticket</button>
 	<br><br>
-	
 	<div>
 	<?php
 			//GET TICKETS ASSIGNED TO TECH USER
@@ -121,12 +115,14 @@ $tickets = $row[0];
 			$sql3 = "SELECT * FROM TICKET WHERE USER_UN='".$_SESSION['currentUser']."'";
 
 			//ASSIGN DATA TO ARRAY
-			$result=$conn->query($sql3);	
-			
+			$result=$conn->query($sql3); ?>	
+
+			<h3>Active Tickets</h3>
+
+			<?php
 			//CREATE TABLE AND DISPLAY DATA
 			//
 			echo "<span>";
-				echo "Your current Tickets";
 						//if condition for no ticket scenario
 						if($result->num_rows > 0){							
 							echo "<table style='width:100%' border='3'>";
@@ -135,7 +131,7 @@ $tickets = $row[0];
 							echo "<th>Ticket ID</th>";
 							echo "<th>Title</th>";
 							echo "<th>Status</th>";
-							echo "<th>Affected User</th>";
+							echo "<th>Created By</th>";
 							//while loop formats table data
 							while($row = $result->fetch_assoc()){
 								$id = $row["TICKET_ID"];
