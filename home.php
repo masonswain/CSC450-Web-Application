@@ -131,7 +131,8 @@ $tickets = $row[0];
 							echo "<th>Ticket ID</th>";
 							echo "<th>Title</th>";
 							echo "<th>Status</th>";
-							echo "<th>Created By</th>";
+							echo "<th>Created By</th></tr>";
+							//echo "</tr>";
 							//while loop formats table data
 							while($row = $result->fetch_assoc()){
 								$id = $row["TICKET_ID"];

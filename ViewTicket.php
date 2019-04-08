@@ -115,25 +115,25 @@ $tickets = $row[0];
                     <td><label for="ticketHistory"><h4>Ticket History</h4></label></td>
                 </tr>
                 <tr>
-                    <td><div name="ticketHistory" id="ticketHistory" style="text-align: center; overflow-y: scroll;">
+                    <td><div name="ticketHistory" id="ticketHistory" style="overflow-y: scroll;">
                         Notes<br>
                         -------------------------------<br>
-                            <?php
-			                if ($result3->num_rows > 0){
-				                while($row3 = $result3->fetch_assoc()){
-					                echo "From:  ";
-					                echo $row3["OWNER_UN"];
-					                echo "<br/>";
-					                echo $row3["NOTE_ID"];
-					                echo "<br/>";
-					                echo $row3["NOTE"];
-					                echo "<br/>";
-					                echo "-------------------------------";
-					                echo "<br/>";
-				                }
-			                } else {
-				                echo "** No Notes Found **".$conn->error;
-			                }
+                        <?php
+			            if ($result3->num_rows > 0){
+				            while($row3 = $result3->fetch_assoc()){
+					            echo "From:  ";
+					            echo $row3["OWNER_UN"];
+					            echo "<br/>";
+					            echo $row3["NOTE_ID"];
+					            echo "<br/>";
+					            echo $row3["NOTE"];
+					            echo "<br/>";
+					            echo "-------------------------------";
+					            echo "<br/>";
+				            }
+			            } else {
+				            echo "** No Notes Found **".$conn->error;
+			            }
                         ?>
                     </div></td>
                 </tr>
@@ -146,7 +146,7 @@ $tickets = $row[0];
             <input type="hidden" name="ticketID" value="<?php echo (isset($ticketID)) ? $ticketID: ''?>"/>
 
 
-            <span class="buttons2">
+            <span style="float: center;">
                 <button type="submit" style="color:white;cursor:pointer;" class="button">Submit</button>
                 <button type="button" style="color:white;cursor:pointer;" class="button" onclick="location.href='home.php'">Cancel</button>
             </span>
