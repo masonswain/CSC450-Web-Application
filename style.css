@@ -45,8 +45,12 @@ table {
 	padding-right: 5%;
 }
 
-.scrollable {
-	overflow-y: scroll;
+div.scrollable {
+	width: 100%;
+    max-height: 50%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
 }
 
 .scrollable select {
@@ -60,5 +64,5 @@ table {
 
 #ticketHistory {
 	border: 2px black;
-	height: 20%;
+	height: 60px;
 }

@@ -14,7 +14,6 @@ $row = mysqli_fetch_array($result);
 $tickets = $row[0];
 ?>
 <!doctype html>
-
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -48,6 +47,7 @@ $tickets = $row[0];
 		<div id="ticketsOpen">
 		<?php 
 			echo $tickets; ?> Ticket(s) Open</div>
+        <!-- Value from database -->
 		<div id="messagesWaiting"> Messages(s) Waiting</div>
 	</span>
 	<br><br>
@@ -63,22 +63,20 @@ $tickets = $row[0];
                     </tr>
                     <tr><!-- Tech -->
                         <th><label for="techUN">Assigned To:</label></th>
-                        <td>
-                            <div class="scrollable">
-                                <select required class="form-control" name="techUN" id="techUN" size="5" multiple="multiple">
-                                    <option value="" disabled selected hidden>Select Assignee</option>
-                                    <?php
-                                        $option = $conn->query("SELECT FNAME, LNAME, USERNAME FROM USER");
-                                        while ($dropdown = $option->fetch_assoc()) {
-                                            unset($un, $fn, $ln);
-                                            $un = $dropdown['USERNAME'];
-                                            $fn = $dropdown['FNAME'];
-                                            $ln = $dropdown['LNAME'];
-                                            echo '<option value="'.$un.'">'.$fn.' '.$ln.'</option>';
-                                        }
-                                    ?>
-                                </select>
-                            </div><br>
+                        <td> 
+                            <select required class="form-control" name="techUN" id="techUN" size="3" multiple="multiple">
+                                <option value="" disabled selected hidden>Select Assignee</option>
+                                <?php
+                                    $option = $conn->query("SELECT FNAME, LNAME, USERNAME FROM USER WHERE ADMIN = 'Y'");
+                                    while ($dropdown = $option->fetch_assoc()) {
+                                        unset($un, $fn, $ln);
+                                        $un = $dropdown['USERNAME'];
+                                        $fn = $dropdown['FNAME'];
+                                        $ln = $dropdown['LNAME'];
+                                        echo '<option value="'.$un.'">'.$fn.' '.$ln.'</option>';
+                                    }
+                                ?>
+                            </select>
                         </td>
                     </tr>
                     <tr><!-- Building dropdown -->                        

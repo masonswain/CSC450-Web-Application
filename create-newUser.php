@@ -55,7 +55,7 @@
 			}
 			
 			//BUILD QUERY STRING
-			$sql = "INSERT INTO USER (FNAME, LNAME, USERNAME, PASSWORD, ADMIN) VALUES ('$fname', '$lname', '$uname', '$authpw', '$isadmin')";
+			$sql = "INSERT INTO USER (FNAME, LNAME, USERNAME, PASSWORD, ADMIN) VALUES ('$fname', '$lname', '$uname', '$authpw', 'N')";
 			$result = mysqli_query($conn, $sql);
 			if ($result) {
 				echo "New user: ".$fname." ".$lname." created successfully";
