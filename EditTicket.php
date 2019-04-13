@@ -66,7 +66,7 @@ $tickets = $row[0];
 
 		//get most recent note Owner -- used with Unread messages feature
 		
-		$sql4 = "SELECT OWNER_UN, MAX(NOTE_ID) FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."'";
+		$sql4 = "SELECT * FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."' order by NOTE_ID desc limit 1";
         $result4=$conn->query($sql4);
 		if (mysqli_num_rows($result4) > 0) {
 	        $data1 = mysqli_fetch_array($result4);
@@ -81,22 +81,66 @@ $tickets = $row[0];
                     <th width="25%"><label>Test</label></th>
                     <td><label>
                     <?php
-						$commentOwner = $data1['OWNER_UN'];
-						$sessionUser = $_SESSION['currentUser'];
+						//The user loading the page is either the creator or the assignee of the selected ticket.
+						if($_SESSION['currentUser'] === $data['USER_UN'] || $data['TECH_UN']){
+							//If the current user is the creator of the ticket.
+							if($_SESSION['currentUser'] === $data['USER_UN']){
+								echo "</br>";
+								echo $_SESSION['currentUser'];
+								echo " is the Creator of this Ticket.";
+								//If the Creator user did create the most recent comment
+								if($_SESSION['currentUser'] === $data1['OWNER_UN'] ){
+									echo "</br>";
+									echo "Unread is not changed, you made the last comment.";
 
-						//Most recent commenter is NOT the current user -- we want to change message from unread to read
-						if($sessionUser == $commentOwner){
-						echo "Unread has not been changed to read";
-						
-						}
-						//Most recent commenter IS the current user -- we do NOT want to change from Unread to read
-						if($sessionUser !== $commentOwner){
-						echo "Unread is changed to read";
+								}
+								//If the Creator user did NOT create the most recent comment
+								if($_SESSION['currentUser'] !== $data1['OWNER_UN'] ){
+									echo "</br>";
+									echo "Unread is being changed, you did not make the last comment.";
+									//Make change on ticket UNREAD VALUE
+									$sql5 = "UPDATE NOTE SET UNREAD = 1 WHERE TICKET_ID = '".$_POST['selectedID']."' AND NOTE_ID = '".$data1['NOTE_ID']."' ";
+									$result5=$conn->query($sql5);
+									if (mysqli_num_rows($result5) > 0) {
+										$data2 = mysqli_fetch_array($result5);
+									}
+									echo $data1['UNREAD'];
+
+									//UPDATE NOTE SET UNREAD = 0 WHERE TICKET_ID = 48 AND NOTE_ID = 2019-04-12 19:27:56
+								}
+							}
+							//If the current user is the assignee of the ticket.
+							if($_SESSION['currentUser'] === $data['TECH_UN']){
+								echo "</br>";
+								echo $_SESSION['currentUser'];
+								echo " is the Assignee of this Ticket.";
+								//If the Assignee user did create the most recent comment
+								if($_SESSION['currentUser'] === $data1['OWNER_UN'] ){
+									echo "</br>";
+									echo "Unread is not changed, you made the last comment.";
+								}
+								//If the Assignee user did NOT create the most recent comment
+								if($_SESSION['currentUser'] !== $data1['OWNER_UN'] ){
+									echo "</br>";
+									echo "Unread is being changed, you did not make the last comment.";
+									//Make change on ticket UNREAD VALUE
+									$sql5 = "UPDATE NOTE SET UNREAD = 0 WHERE TICKET_ID = '".$_POST['selectedID']."' AND NOTE_ID = '".$data1['NOTE_ID']."' ";
+									$result5=$conn->query($sql5);
+									$sql6 = "SELECT * FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."' order by NOTE_ID desc limit 1";
+									$result6=$conn->query($sql6);
+									if (mysqli_num_rows($result6) > 0) {
+										$data2 = mysqli_fetch_array($result6);
+									}
+									echo "</br> UNREAD =";
+									echo $data2['UNREAD'];
+									
+								}
+							}
 						}
 						echo "</br>";
-						echo $sessionUser;
+						echo $_SESSION['currentUser'];
 						echo "</br>";
-						echo $commentOwner;
+						echo $data1['OWNER_UN'];
 						?>
 						
 						</label></td>
@@ -133,7 +177,7 @@ $tickets = $row[0];
                         echo $data['PHONE']; ?></label></td>
                 </tr>
                 <tr><!-- Assignee -->
-                    <th width="25%"><label>Assingee</label></th>
+                    <th width="25%"><label>Assignee</label></th>
                     <td> 
                         <select required class="form-control" name="techUN" id="techUN" size="3" multiple="multiple">
                             <option value="" disabled selected hidden>Select Assignee</option>
