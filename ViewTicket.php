@@ -60,13 +60,48 @@ $tickets = $row[0];
         if (mysqli_num_rows($result2) > 0) {
 	        $data = mysqli_fetch_array($result2);
         }
-
+		//get notes
         $sql3 = "SELECT * FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."' ORDER BY NOTE_ID DESC";
         $result3=$conn->query($sql3);
+
+		//get most recent note Owner -- used with Unread messages feature
+		
+		$sql4 = "SELECT OWNER_UN, MAX(NOTE_ID) FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."'";
+        $result4=$conn->query($sql4);
+		if (mysqli_num_rows($result4) > 0) {
+	        $data1 = mysqli_fetch_array($result4);
+        }
+		
+
     ?>
+	
+
 	<br><br><br>
         <form action="add-note.php" method="post" id="viewTicket">
             <table width="100%" border='3'>
+				
+				<tr><!-- Test -->
+                    <th width="25%"><label>Test</label></th>
+                    <td><label>
+                    <?php
+						//Most recent commenter is NOT the current user -- we want to change message from unread to read
+						if($_SESSION['currentUser'] === $data1['OWNER_UN']){
+						echo "Unread has been changed to read";
+						
+						}
+						//Most recent commenter IS the current user -- we do NOT want to change from Unread to read
+						if($_SESSION['currentUser'] !== $data1['OWNER_UN']){
+						echo "Unread is not changed";
+						}
+						echo "</br>";
+						echo $_SESSION['currentUser'];
+						echo "</br>";
+						echo $data1['OWNER_UN'];
+						?>
+						
+						</label></td>
+				</tr>		
+
                 <tr><!-- Ticket ID -->
                     <th width="25%"><label>Ticket ID</label></th>
                     <td><label>
@@ -80,7 +115,7 @@ $tickets = $row[0];
                         echo $data['TICKET_TITLE']; ?></label></td>
                 </tr>
                 <tr><!-- Assignee -->
-                    <th width="25%"><label>Assingee</label></th>
+                    <th width="25%"><label>Assignee</label></th>
                     <td><label>
                     <?php 
                         echo $data['TECH_UN']; ?></label></td>
@@ -115,7 +150,7 @@ $tickets = $row[0];
                     <td><label for="ticketHistory"><h4>Ticket History</h4></label></td>
                 </tr>
                 <tr>
-                    <td><div name="ticketHistory" id="ticketHistory" style="overflow-y: scroll;">
+                    <td><div name="ticketHistory" class="scrollable">
                         Notes<br>
                         -------------------------------<br>
                         <?php

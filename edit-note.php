@@ -26,9 +26,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 $sql2 = "UPDATE TICKET SET TECH_UN = '".$techUN."', STATUS = '".$status."' WHERE TICKET_ID = '".$ticketID."'";
 $conn->query($sql2);
 
-//Create Note in NOTE table
-$sql="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."')";
-			
+//if statement to flip adjust UNREAD boolean accordingly
+if($techUN == $_SESSION['currentUser']){
+	//Create Note in NOTE table as Assigned Tech, should be false/0
+	$sql="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE, UNREAD) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."','0')";
+}
+if($techUN !== $_SESSION['currentUser']){
+	//Create Note in NOTE table as user, should be True/Default
+	$sql="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE, UNREAD) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."','0')";
+}
+
 if ($conn->query($sql) === TRUE) {
 	echo "alert(Note created successfully);";
 	header("Location: home.php");

@@ -63,10 +63,45 @@ $tickets = $row[0];
 
         $sql3 = "SELECT * FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."' ORDER BY NOTE_ID DESC";
         $result3=$conn->query($sql3);
+
+		//get most recent note Owner -- used with Unread messages feature
+		
+		$sql4 = "SELECT OWNER_UN, MAX(NOTE_ID) FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."'";
+        $result4=$conn->query($sql4);
+		if (mysqli_num_rows($result4) > 0) {
+	        $data1 = mysqli_fetch_array($result4);
+        }
     ?>
 	<br><br><br>
         <form action="edit-note.php" method="post" id="viewTicket">
             <table width="100%" border='3'>
+
+
+				<tr><!-- Test -->
+                    <th width="25%"><label>Test</label></th>
+                    <td><label>
+                    <?php
+						$commentOwner = $data1['OWNER_UN'];
+						$sessionUser = $_SESSION['currentUser'];
+
+						//Most recent commenter is NOT the current user -- we want to change message from unread to read
+						if($sessionUser == $commentOwner){
+						echo "Unread has not been changed to read";
+						
+						}
+						//Most recent commenter IS the current user -- we do NOT want to change from Unread to read
+						if($sessionUser !== $commentOwner){
+						echo "Unread is changed to read";
+						}
+						echo "</br>";
+						echo $sessionUser;
+						echo "</br>";
+						echo $commentOwner;
+						?>
+						
+						</label></td>
+				</tr>
+
                 <tr><!-- Ticket ID -->
                     <th width="25%"><label>Ticket ID</label></th>
                     <td><label>
