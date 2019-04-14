@@ -55,7 +55,7 @@ $tickets = $row[0];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $ticketID=$_POST['selectedID'];
         }
-        $sql2 = "SELECT TICKET_TITLE, TECH_UN, STATUS, BUILDING, ROOM, PHONE FROM TICKET WHERE TICKET_ID = '".$_POST['selectedID']."'";
+        $sql2 = "SELECT TICKET_TITLE, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE FROM TICKET WHERE TICKET_ID = '".$_POST['selectedID']."'";
         $result2=$conn->query($sql2);
         if (mysqli_num_rows($result2) > 0) {
 	        $data = mysqli_fetch_array($result2);
@@ -66,10 +66,10 @@ $tickets = $row[0];
 
 		//get most recent note Owner -- used with Unread messages feature
 		
-		$sql4 = "SELECT * FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."' order by NOTE_ID desc limit 1";
-        $result4=$conn->query($sql4);
-		if (mysqli_num_rows($result4) > 0) {
-	        $data1 = mysqli_fetch_array($result4);
+		$sqlT4 = "SELECT * FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."' order by NOTE_ID desc limit 1";
+        $resultT4=$conn->query($sqlT4);
+		if (mysqli_num_rows($resultT4) > 0) {
+	        $data1 = mysqli_fetch_array($resultT4);
         }
     ?>
 	<br><br><br>
@@ -83,60 +83,30 @@ $tickets = $row[0];
                     <?php
 						//The user loading the page is either the creator or the assignee of the selected ticket.
 						if($_SESSION['currentUser'] === $data['USER_UN'] || $data['TECH_UN']){
-							//If the current user is the creator of the ticket.
-							if($_SESSION['currentUser'] === $data['USER_UN']){
-								echo "</br>";
-								echo $_SESSION['currentUser'];
-								echo " is the Creator of this Ticket.";
+							//If the current user is the assignee of the ticket.
+							if($_SESSION['currentUser'] === $data['TECH_UN']){
 								//If the Creator user did create the most recent comment
 								if($_SESSION['currentUser'] === $data1['OWNER_UN'] ){
 									echo "</br>";
 									echo "Unread is not changed, you made the last comment.";
-
 								}
 								//If the Creator user did NOT create the most recent comment
 								if($_SESSION['currentUser'] !== $data1['OWNER_UN'] ){
 									echo "</br>";
 									echo "Unread is being changed, you did not make the last comment.";
 									//Make change on ticket UNREAD VALUE
-									$sql5 = "UPDATE NOTE SET UNREAD = 1 WHERE TICKET_ID = '".$_POST['selectedID']."' AND NOTE_ID = '".$data1['NOTE_ID']."' ";
-									$result5=$conn->query($sql5);
-									if (mysqli_num_rows($result5) > 0) {
-										$data2 = mysqli_fetch_array($result5);
-									}
-									echo $data1['UNREAD'];
-
-									//UPDATE NOTE SET UNREAD = 0 WHERE TICKET_ID = 48 AND NOTE_ID = 2019-04-12 19:27:56
-								}
-							}
-							//If the current user is the assignee of the ticket.
-							if($_SESSION['currentUser'] === $data['TECH_UN']){
-								echo "</br>";
-								echo $_SESSION['currentUser'];
-								echo " is the Assignee of this Ticket.";
-								//If the Assignee user did create the most recent comment
-								if($_SESSION['currentUser'] === $data1['OWNER_UN'] ){
-									echo "</br>";
-									echo "Unread is not changed, you made the last comment.";
-								}
-								//If the Assignee user did NOT create the most recent comment
-								if($_SESSION['currentUser'] !== $data1['OWNER_UN'] ){
-									echo "</br>";
-									echo "Unread is being changed, you did not make the last comment.";
-									//Make change on ticket UNREAD VALUE
-									$sql5 = "UPDATE NOTE SET UNREAD = 0 WHERE TICKET_ID = '".$_POST['selectedID']."' AND NOTE_ID = '".$data1['NOTE_ID']."' ";
+									$sql5 = "UPDATE NOTE SET UNREAD_TECH = 0 WHERE TICKET_ID = '".$_POST['selectedID']."' AND NOTE_ID = '".$data1['NOTE_ID']."' ";
 									$result5=$conn->query($sql5);
 									$sql6 = "SELECT * FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."' order by NOTE_ID desc limit 1";
 									$result6=$conn->query($sql6);
 									if (mysqli_num_rows($result6) > 0) {
 										$data2 = mysqli_fetch_array($result6);
 									}
-									echo "</br> UNREAD =";
-									echo $data2['UNREAD'];
-									
 								}
 							}
 						}
+						echo "</br> UNREAD_TECH =";
+						echo $data['UNREAD_TECH'];
 						echo "</br>";
 						echo $_SESSION['currentUser'];
 						echo "</br>";
@@ -230,6 +200,10 @@ $tickets = $row[0];
 					            echo $row3["NOTE_ID"];
 					            echo "<br/>";
 					            echo $row3["NOTE"];
+					            echo "<br/>";
+								echo $row3["UNREAD"];
+					            echo "<br/>";
+								echo $row3["UNREAD_TECH"];
 					            echo "<br/>";
 					            echo "-------------------------------";
 					            echo "<br/>";

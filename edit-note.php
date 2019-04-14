@@ -27,14 +27,9 @@ $sql2 = "UPDATE TICKET SET TECH_UN = '".$techUN."', STATUS = '".$status."' WHERE
 $conn->query($sql2);
 
 //if statement to flip adjust UNREAD boolean accordingly
-if($techUN == $_SESSION['currentUser']){
-	//Create Note in NOTE table as Assigned Tech, should be false/0
-	$sql="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE, UNREAD) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."','0')";
-}
-if($techUN !== $_SESSION['currentUser']){
-	//Create Note in NOTE table as user, should be True/Default
-	$sql="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE, UNREAD) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."','0')";
-}
+$sql="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE, UNREAD, UNREAD_TECH) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."','1','0')";
+
+
 
 if ($conn->query($sql) === TRUE) {
 	echo "alert(Note created successfully);";

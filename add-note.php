@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 
 //Create Note in NOTE table
-$sql="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."')";
+$sql="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE, UNREAD, UNREAD_TECH) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."','0','1')";
 			
 			if ($conn->query($sql) === TRUE) {
 				echo "alert(Note created successfully);";

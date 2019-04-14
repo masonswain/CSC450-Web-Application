@@ -77,7 +77,8 @@ $tickets = $row[0];
 							echo "<th>Ticket ID</th>";
 							echo "<th>Title</th>";
 							echo "<th>Status</th>";
-							echo "<th>Assigned To</th></tr>";
+							echo "<th>Assigned To</th>";
+							echo "<th>Unread Messages</th></tr>";
 							//while loop formats table data
 							while($row2 = $result2->fetch_assoc()){
 								$id2 = $row2["TICKET_ID"];
@@ -104,6 +105,24 @@ $tickets = $row[0];
 								//assigned user
 								echo "<td>";
 								echo $row2["TECH_UN"];
+								echo "</td>";
+								//unread Messages
+								echo "<td>";
+								$sqlURM = "SELECT * FROM NOTE WHERE TICKET_ID= '".$row2['TICKET_ID']."' order by NOTE_ID desc limit 1";
+								$resultURM=$conn->query($sqlURM);
+								if (mysqli_num_rows($resultURM) > 0) {
+									$dataURM = mysqli_fetch_array($resultURM);
+								}
+								ECHO "</br>";
+								ECHO $dataURM['UNREAD_TECH'];
+								ECHO "</br>";
+								ECHO $row2['TICKET_ID'];
+								if($dataURM['UNREAD_TECH'] === '0'){
+									echo "No";
+								}
+								if($dataURM['UNREAD_TECH'] === '1'){
+									echo "Yes";
+								}
 								echo "</td>";
 								echo "</tr>";
 							}
@@ -141,7 +160,8 @@ $tickets = $row[0];
 							echo "<th>Ticket ID</th>";
 							echo "<th>Title</th>";
 							echo "<th>Status</th>";
-							echo "<th>Created By</th></tr>";
+							echo "<th>Created By</th>";
+							echo "<th>Unread Messages</th></tr>";
 							//echo "</tr>";
 							//while loop formats table data
 							while($row3 = $result3->fetch_assoc()){
@@ -170,7 +190,23 @@ $tickets = $row[0];
 								echo "<td>";
 								echo $row3["USER_UN"];
 								echo "</td>";
-								echo "</tr>";								
+								//unread Messages
+								echo "<td>";
+								
+								$sqlURM = "SELECT * FROM NOTE WHERE TICKET_ID= '".$row3['TICKET_ID']."' order by NOTE_ID desc limit 1";
+								$resultURM=$conn->query($sqlURM);
+								if (mysqli_num_rows($resultURM) > 0) {
+									$dataURM = mysqli_fetch_array($resultURM);
+								}
+								ECHO $dataURM['UNREAD'];
+								if($dataURM['UNREAD'] === '0'){
+									echo "No";
+								}
+								if($dataURM['UNREAD'] === '1'){
+									echo "Yes";
+								}
+								echo "</td>";
+								echo "</tr>";
 							}
 							echo "</table>";
 						}
