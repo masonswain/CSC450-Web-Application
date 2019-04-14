@@ -95,7 +95,7 @@ $tickets = $row[0];
 									echo "</br>";
 									echo "Unread is being changed, you did not make the last comment.";
 									//Make change on ticket UNREAD VALUE
-									$sql5 = "UPDATE NOTE SET UNREAD = 0 WHERE TICKET_ID = '".$_POST['selectedID']."' AND NOTE_ID = '".$data1['NOTE_ID']."' ";
+									$sql5 = "UPDATE NOTE SET UNREAD_USER = 0 WHERE TICKET_ID = '".$_POST['selectedID']."' AND NOTE_ID = '".$data1['NOTE_ID']."' ";
 									$result5=$conn->query($sql5);
 									$sql6 = "SELECT * FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."' order by NOTE_ID desc limit 1";
 									$result6=$conn->query($sql6);
@@ -105,8 +105,8 @@ $tickets = $row[0];
 								}
 							}
 						}
-						echo "</br> UNREAD =";
-						echo $data2['UNREAD'];
+						echo "</br> UNREAD_USER =";
+						echo $data2['UNREAD_USER'];
 						echo "</br>";
 						echo $_SESSION['currentUser'];
 						echo "</br>";
@@ -176,7 +176,7 @@ $tickets = $row[0];
 					            echo "<br/>";
 					            echo $row3["NOTE"];
 					            echo "<br/>";
-								echo $row3["UNREAD"];
+								echo $row3["UNREAD_USER"];
 					            echo "<br/>";
 								echo $row3["UNREAD_TECH"];
 					            echo "<br/>";

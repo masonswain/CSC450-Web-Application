@@ -201,7 +201,7 @@ $tickets = $row[0];
 					            echo "<br/>";
 					            echo $row3["NOTE"];
 					            echo "<br/>";
-								echo $row3["UNREAD"];
+								echo $row3["UNREAD_USER"];
 					            echo "<br/>";
 								echo $row3["UNREAD_TECH"];
 					            echo "<br/>";

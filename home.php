@@ -198,11 +198,11 @@ $tickets = $row[0];
 								if (mysqli_num_rows($resultURM) > 0) {
 									$dataURM = mysqli_fetch_array($resultURM);
 								}
-								ECHO $dataURM['UNREAD'];
-								if($dataURM['UNREAD'] === '0'){
+								ECHO $dataURM['UNREAD_USER'];
+								if($dataURM['UNREAD_USER'] === '0'){
 									echo "No";
 								}
-								if($dataURM['UNREAD'] === '1'){
+								if($dataURM['UNREAD_USER'] === '1'){
 									echo "Yes";
 								}
 								echo "</td>";

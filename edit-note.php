@@ -27,7 +27,7 @@ $sql2 = "UPDATE TICKET SET TECH_UN = '".$techUN."', STATUS = '".$status."' WHERE
 $conn->query($sql2);
 
 //if statement to flip adjust UNREAD boolean accordingly
-$sql="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE, UNREAD, UNREAD_TECH) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."','1','0')";
+$sql="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE, UNREAD_USER, UNREAD_TECH) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."','1','0')";
 
 
 
