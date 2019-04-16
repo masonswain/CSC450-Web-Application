@@ -8,10 +8,42 @@ $username = "joelknut_csc450";
 $pw = "CSP@2019";
 $dbName = "joelknut_csc450";
 $conn = new mysqli($servername, $username, $pw, $dbName);
-$sql = "SELECT COUNT(*) FROM TICKET WHERE USER_UN = '".$_SESSION['currentUser']."'";
+//Total Tickets
+$sql = "SELECT COUNT(*) FROM TICKET WHERE USER_UN = '".$_SESSION['currentUser']."' OR TECH_UN = '".$_SESSION['currentUser']."'";
 $result=$conn->query($sql);
 $row = mysqli_fetch_array($result);
-$tickets = $row[0];
+$totalTickets = $row[0];
+//User created tickets
+$sqlc = "SELECT COUNT(*) FROM TICKET WHERE USER_UN = '".$_SESSION['currentUser']."'";
+$resultc=$conn->query($sqlc);
+$rowc = mysqli_fetch_array($resultc);
+$createdTickets = $rowc[0];
+//Assigned Tickets
+$sqla = "SELECT COUNT(*) FROM TICKET WHERE TECH_UN = '".$_SESSION['currentUser']."'";
+$resulta=$conn->query($sqla);
+$rowa = mysqli_fetch_array($resulta);
+$assignedTickets = $rowa[0];
+
+//GET TICKETS THAT CURRENT USER IS INVOLVED WITH
+$sqlUN = "SELECT * FROM TICKET WHERE USER_UN = '".$_SESSION['currentUser']."' OR TECH_UN='".$_SESSION['currentUser']."'";
+$resultUN=$conn->query($sqlUN);
+//String for holding ticket SQL query text
+$IdString = '';
+//build string
+if($resultUN->num_rows > 0){
+	//while loop formats table data
+	while($rowUN = $resultUN->fetch_assoc()){
+		$IdString = $IdString . 'TICKET_ID=' . $rowUN['TICKET_ID'] . ' OR ';
+	}
+}
+//remove last OR
+$IdString = substr($IdString, 0, -4);
+//get count of unread tickets from $IdString
+$sqlUnCt = "SELECT COUNT(*) FROM NOTE WHERE (".$IdString.") AND OWNER_UN!='".$_SESSION['currentUser']."' AND UNREAD=1";
+$resultUnCt=$conn->query($sqlUnCt);
+$rowUnCt = mysqli_fetch_array($resultUnCt);
+$Unread = $rowUnCt[0];
+
 ?>
 <!doctype html>
 
@@ -48,9 +80,18 @@ $tickets = $row[0];
 	<span class="notifications">
 		<!-- The following values will be inserted from the database -->
 		<div id="ticketsOpen">
+		<?php 
+			echo $totalTickets;?> 
+			Ticket(s) Open (<?php 
+			echo $createdTickets;?>
+			Created, 
+			<?php 
+			echo $assignedTickets;?>
+			 Assigned)
+			</div>
+		<div id="messagesWaiting"> 
 		<?php
-			echo $tickets; ?> Ticket(s) Open</div>
-		<div id="messagesWaiting"> Messages(s) Waiting</div>
+			echo $Unread; ?> Ticket(s) Awaiting Reply</div>
 	</span>
 	<br><br>
 	<button type="button" class="button" style="float:left;color:white;cursor:pointer;"onClick="location.href='OpenTicket.php'">Open Ticket</button>
@@ -68,7 +109,6 @@ $tickets = $row[0];
 			
 			//CREATE TABLE AND DISPLAY DATA
 			//
-			
 						//if condition for no ticket scenario
 						if($result2->num_rows > 0){							
 							echo "<table style='width:100%' border='3'>";
@@ -113,10 +153,6 @@ $tickets = $row[0];
 								if (mysqli_num_rows($resultURM) > 0) {
 									$dataURM = mysqli_fetch_array($resultURM);
 								}
-								ECHO "</br>";
-								ECHO $dataURM['UNREAD_TECH'];
-								ECHO "</br>";
-								ECHO $row2['TICKET_ID'];
 								if($dataURM['UNREAD_TECH'] === '0'){
 									echo "No";
 								}
@@ -136,9 +172,6 @@ $tickets = $row[0];
 							echo $_SESSION['currentUser'].$conn->error;
 						}
 				
-			
-		 
-
 			//GET TICKETS ASSIGNED TO USER
 			//BUILD QUERY STRING
 			$sql3 = "SELECT * FROM TICKET WHERE USER_UN='".$_SESSION['currentUser']."'";
@@ -147,7 +180,6 @@ $tickets = $row[0];
 			$result3=$conn->query($sql3); 	
 			
 			echo "<h3>Active Tickets</h3>";
-			
 			
 			//CREATE TABLE AND DISPLAY DATA
 			//
