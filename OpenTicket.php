@@ -8,10 +8,69 @@ $username = "joelknut_csc450";
 $pw = "CSP@2019";
 $dbName = "joelknut_csc450";
 $conn = new mysqli($servername, $username, $pw, $dbName);
-$sql = "SELECT COUNT(*) FROM TICKET WHERE USER_UN = '".$_SESSION['currentUser']."'";
+//Total Tickets
+$sql = "SELECT COUNT(*) FROM TICKET WHERE USER_UN = '".$_SESSION['currentUser']."' OR TECH_UN = '".$_SESSION['currentUser']."'";
 $result=$conn->query($sql);
 $row = mysqli_fetch_array($result);
-$tickets = $row[0];
+$totalTickets = $row[0];
+//User created tickets
+$sqlc = "SELECT COUNT(*) FROM TICKET WHERE USER_UN = '".$_SESSION['currentUser']."'";
+$resultc=$conn->query($sqlc);
+$rowc = mysqli_fetch_array($resultc);
+$createdTickets = $rowc[0];
+//Assigned Tickets
+$sqla = "SELECT COUNT(*) FROM TICKET WHERE TECH_UN = '".$_SESSION['currentUser']."'";
+$resulta=$conn->query($sqla);
+$rowa = mysqli_fetch_array($resulta);
+$assignedTickets = $rowa[0];
+
+//GET TICKETS THAT CURRENT USER IS INVOLVED WITH
+$sqlUN = "SELECT * FROM TICKET WHERE USER_UN = '".$_SESSION['currentUser']."' OR TECH_UN='".$_SESSION['currentUser']."'";
+$resultUN=$conn->query($sqlUN);
+//String for holding ticket SQL query text
+$IdString = '';
+//build string
+if($resultUN->num_rows > 0){
+	//while loop formats table data
+	while($rowUN = $resultUN->fetch_assoc()){
+		$IdString = $IdString . 'TICKET_ID=' . $rowUN['TICKET_ID'] . ' OR ';
+	}
+}
+//remove last OR
+$IdString = substr($IdString, 0, -4);
+//get count of unread tickets from $IdString
+$sqlUnCt = "SELECT COUNT(*) FROM NOTE WHERE (".$IdString.") AND OWNER_UN!='".$_SESSION['currentUser']."' AND UNREAD=1";
+$resultUnCt=$conn->query($sqlUnCt);
+$rowUnCt = mysqli_fetch_array($resultUnCt);
+$Unread = $rowUnCt[0];
+
+/////IF NOTE HAS BEEN VIEWED FEATURE////////
+//The user loading the page is either the creator or the assignee of the selected ticket.
+if($_SESSION['currentUser'] === $data['USER_UN'] || $data['TECH_UN']){
+	//If the current user is the assignee of the ticket.
+	if($_SESSION['currentUser'] === $data['TECH_UN']){
+		//If the Creator user did create the most recent comment
+		if($_SESSION['currentUser'] === $data1['OWNER_UN'] ){
+			//echo "</br>";
+			//echo "Unread is not changed, you made the last comment.";
+		}
+		//If the Creator user did NOT create the most recent comment
+		if($_SESSION['currentUser'] !== $data1['OWNER_UN'] ){
+			//echo "</br>";
+			//echo "Unread is being changed, you did not make the last comment.";
+			//Make change on ticket UNREAD VALUE
+			$sql5 = "UPDATE NOTE SET UNREAD_TECH = 0 WHERE TICKET_ID = '".$_POST['selectedID']."' AND NOTE_ID = '".$data1['NOTE_ID']."' ";
+			$result5=$conn->query($sql5);
+			$sql6 = "SELECT * FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."' order by NOTE_ID desc limit 1";
+			$result6=$conn->query($sql6);
+			if (mysqli_num_rows($result6) > 0) {
+				$data2 = mysqli_fetch_array($result6);
+			}
+		}
+	}
+}
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -46,9 +105,17 @@ $tickets = $row[0];
 	<span class="notifications">
 		<div id="ticketsOpen">
 		<?php 
-			echo $tickets; ?> Ticket(s) Open</div>
-        <!-- Value from database -->
-		<div id="messagesWaiting"> Messages(s) Waiting</div>
+			echo $totalTickets;?> 
+			Ticket(s) Open (<?php 
+			echo $createdTickets;?>
+			Created, 
+			<?php 
+			echo $assignedTickets;?>
+			 Assigned)
+			</div>
+		<div id="messagesWaiting"> 
+		<?php
+			echo $Unread; ?> Ticket(s) Awaiting Reply</div>
 	</span>
 	<br><br>
 		<div id="openTicket"><button type="button" class="button" style="float:left;color:white;cursor:pointer;" onClick="location.href='OpenTicket.php'">Open Ticket</button></div>

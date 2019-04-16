@@ -230,7 +230,6 @@ $Unread = $rowUnCt[0];
 								if (mysqli_num_rows($resultURM) > 0) {
 									$dataURM = mysqli_fetch_array($resultURM);
 								}
-								ECHO $dataURM['UNREAD_USER'];
 								if($dataURM['UNREAD_USER'] === '0'){
 									echo "No";
 								}
