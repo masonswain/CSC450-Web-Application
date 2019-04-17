@@ -59,7 +59,7 @@ include('header.php');
 	<?php		
 			//GET TICKETS ASSIGNED TO TECH USER
 			//BUILD QUERY STRING
-			$sql2 = "SELECT * FROM TICKET WHERE TECH_UN='".$_SESSION['currentUser']."'";
+			$sql2 = "SELECT * FROM TICKET WHERE TECH_UN='".$_SESSION['currentUser']."' AND STATUS='Active'";
 
 			//ASSIGN DATA TO ARRAY
 			$result2=$conn->query($sql2);			
@@ -201,8 +201,8 @@ include('header.php');
 						//if there are no tickets found
 						else {
 							echo "<br>";
-							echo "No tickets are currently assigned to: ";
 							echo $_SESSION['currentUser'].$conn->error;
+							echo " does not currently have any active tickets.";
 						}
 				
 			//echo "</span>";
