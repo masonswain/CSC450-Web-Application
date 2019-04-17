@@ -131,7 +131,7 @@ include('header.php');
 				
 			//GET TICKETS ASSIGNED TO USER
 			//BUILD QUERY STRING
-			$sql3 = "SELECT * FROM TICKET WHERE USER_UN='".$_SESSION['currentUser']."'";
+			$sql3 = "SELECT * FROM TICKET WHERE USER_UN='".$_SESSION['currentUser']."' AND STATUS='Active'";
 
 			//ASSIGN DATA TO ARRAY
 			$result3=$conn->query($sql3); 	
