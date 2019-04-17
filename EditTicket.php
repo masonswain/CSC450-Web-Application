@@ -111,6 +111,12 @@ include('header.php');
                     <td><label>
                     <?php 
                         echo $data['TICKET_TITLE']; ?></label></td>
+                </tr>
+                <tr><!-- Owner -->
+                    <th width="25%"><label>Created By</label></th>
+                    <td><label>
+                    <?php 
+                        echo $data['USER_UN']; ?></label></td>
                 </tr>         
                 <tr><!-- Building -->
                     <th width="25%"><label>Building</label></th>

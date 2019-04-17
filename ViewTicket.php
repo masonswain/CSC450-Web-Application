@@ -119,6 +119,12 @@ include('header.php');
                     <?php 
                         echo $data['TECH_UN']; ?></label></td>
                 </tr>
+				<tr><!-- Owner -->
+                    <th width="25%"><label>Created By</label></th>
+                    <td><label>
+                    <?php 
+                        echo $data['USER_UN']; ?></label></td>
+                </tr>
                 <tr><!-- Status -->
                     <th width="25%"><label>Status</label></th>
                     <td><label>
