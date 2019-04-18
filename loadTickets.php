@@ -5,8 +5,8 @@
 	<body>
 		<form action = "<?php $_PHP_SELF ?>" method = "POST">
 			Filter Tickets: <select name= "status">
-			<!--<option >Select status</option>-->
-			<option selected= "selected" value="All">All</option>
+			<option >Select Status</option>
+			<option value="All">All</option>
 			<option value="Active">Active</option>
 			<option value="Closed">Closed</option>
 			</select>
