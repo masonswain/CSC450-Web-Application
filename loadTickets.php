@@ -7,7 +7,7 @@
 			Filter Tickets: <select name= "status">
 			<option >Select Status</option>
 			<option value="All">All</option>
-			<option value="Active">Active</option>
+			<option value="Active" selected>Active</option>
 			<option value="Closed">Closed</option>
 			</select>
 			<input type = "submit" />
@@ -16,6 +16,9 @@
 		<?php
 			//Get Admin value for current user
 			$status = $_POST['status'];
+			if (!isset($status)) {
+				$status = "Active";
+			}
 			$sqlAll = "SELECT ADMIN FROM USER WHERE USERNAME='".$_SESSION['currentUser']."'";
 			$resultAll = $conn->query($sqlAll);
 			$isAdmin = $resultAll->fetch_assoc(); 
