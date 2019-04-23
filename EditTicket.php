@@ -143,7 +143,7 @@ include('header.php');
                 <tr><!-- Assignee -->
                     <th width="25%"><label>Assignee</label></th>
                     <td> 
-                        <select required class="form-control" name="techUN" id="techUN" size="3" multiple="multiple">
+                        <select required class="form-control" name="techUN" id="techUN" size="4" multiple="multiple">
                             <option value="" disabled selected hidden>Select Assignee</option>
                             <?php
                                 $option = $conn->query("SELECT FNAME, LNAME, USERNAME FROM USER WHERE ADMIN = 'Y'");
