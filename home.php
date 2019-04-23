@@ -28,7 +28,19 @@
 	</form>
 </div>
 
-<h1>South St Paul Technology</h1>
+<?php
+	//Get Admin value for current user
+	$sqlAdmin = "SELECT ADMIN FROM USER WHERE USERNAME='".$_SESSION['currentUser']."'";
+	$resultAdmin = $conn->query($sqlAdmin);
+	$isAdmin = $resultAdmin->fetch_assoc();
+
+	//Header displayed based on user's Admin status
+	if ($isAdmin['ADMIN'] == 'N') {
+		echo "<h1>South St Paul Schools</h1>";
+	} else if ($isAdmin['ADMIN'] == 'Y') {
+		echo "<h1>South St Paul Schools Technology Command Center</h1>";
+	}
+?>
 
 </head>
 
@@ -51,7 +63,12 @@
 			echo $Unread; ?> Ticket(s) Awaiting Reply</div>
 	</span>
 	<br><br>
-	<button type="button" class="button" style="float:left;color:white;cursor:pointer;"onClick="location.href='OpenTicket.php'">Open Ticket</button>
+	<?php
+		if ($isAdmin['ADMIN'] == 'N') {
+			echo "<button type='button' class='button' style='float:left;' onClick='location.href=\"openTicket.php\"'>Open Ticket</button>";
+		}
+	?>
+	
 	<br>
 	<br>
 	

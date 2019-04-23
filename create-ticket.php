@@ -57,7 +57,7 @@ session_start();
 				die("Connection failed: ".$dbConn->connect_error);
 			}
 			
-			$sql = "INSERT INTO TICKET (TICKET_TITLE, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE) VALUES ('$ticketTitle', '$techUN', '{$_SESSION['currentUser']}', 'Active', '$building', '$room', '$phone')";
+			$sql = "INSERT INTO TICKET (TICKET_TITLE, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE) VALUES ('$ticketTitle', '$techUN', '{$_SESSION['currentUser']}', 'Unassigned', '$building', '$room', '$phone')";
 			$result = mysqli_query($conn, $sql);				
 			if ($result) {
 				echo "alert(Ticket made by $_SESSION[currentUser] created successfully);";

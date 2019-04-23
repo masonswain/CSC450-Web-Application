@@ -59,24 +59,6 @@ include('header.php');
                         <th><label for="ticketTitle">Title</label></th>
                         <td><input required type="text" class="form-control" name="ticketTitle" id="ticketTitle"><br></td>
                     </tr>
-                    <tr><!-- Tech -->
-                        <th><label for="techUN">Assigned To:</label></th>
-                        <td> 
-                            <select required class="form-control" name="techUN" id="techUN" size="3" multiple="multiple">
-                                <option value="" disabled selected hidden>Select Assignee</option>
-                                <?php
-                                    $option = $conn->query("SELECT FNAME, LNAME, USERNAME FROM USER WHERE ADMIN = 'Y'");
-                                    while ($dropdown = $option->fetch_assoc()) {
-                                        unset($un, $fn, $ln);
-                                        $un = $dropdown['USERNAME'];
-                                        $fn = $dropdown['FNAME'];
-                                        $ln = $dropdown['LNAME'];
-                                        echo '<option value="'.$un.'">'.$fn.' '.$ln.'</option>';
-                                    }
-                                ?>
-                            </select>
-                        </td>
-                    </tr>
                     <tr><!-- Building dropdown -->                        
                         <th><label for="buildingDropDown">Building:</label></th>
                         <td>                       

@@ -63,6 +63,7 @@
 			echo "</tr>";
 		}
 		echo "</table>";
+		echo "<br>";
 	}
 	//if there are no tickets found
 	else {

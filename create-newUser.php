@@ -26,7 +26,6 @@
 				$lname=$_POST['lname'];
 				$uname=$_POST['uname'];
 				$authpw=$_POST['authpw'];
-				$isadmin=$_POST['isadmin'];
 			}
 						
 			//USED FOR TESTING

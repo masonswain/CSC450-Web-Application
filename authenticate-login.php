@@ -39,7 +39,7 @@ if (mysqli_num_rows($resultOfQuery) > 0) {
 
 <body>
 
-	<h2>South St Paul Technology</h2>
+	<h2>South St Paul Schools</h2>
 	<div id="login">
 		
 		<?php			

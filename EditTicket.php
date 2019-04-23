@@ -48,7 +48,11 @@ include('header.php');
 	</span>
 	<br><br>
 	<span class="buttons">
-		<div id="openTicket"><button type="button" class="button" style="float:left;color:white;cursor:pointer;" onClick="location.href='OpenTicket.php'">Open Ticket</button></div>
+		<?php
+		    if ($isAdmin['ADMIN'] == 'N') {
+			    echo "<button type='button' class='button' style='float:left;' onClick='location.href='OpenTicket.php''>Open Ticket</button>";
+		    }
+	    ?>
 	</span>
     <?php
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -162,7 +166,7 @@ include('header.php');
                     <th width="25%"><label>Status</label></th>
                     <td>
                     <?php
-                        if($data['STATUS'] == "Active") {
+                        if($data['STATUS'] == "Active" || $data['STATUS'] == "Unassigned") {
                             echo '<input type="radio" name="status" value="Active" checked="checked">Active<br>';
                             echo '<input type="radio" name="status" value="Closed">Closed';
                         } else {
@@ -210,8 +214,8 @@ include('header.php');
 
 
             <span style="float: center;">
-                <button type="submit" style="color:white;cursor:pointer;" class="button">Submit</button>
-                <button type="button" style="color:white;cursor:pointer;" class="button" onclick="location.href='home.php'">Cancel</button>
+                <button type="submit" class="button">Submit</button>
+                <button type="button" class="button" onclick="location.href='home.php'">Cancel</button>
             </span>
         </form>
 	
