@@ -183,8 +183,6 @@ include('header.php');
                 </tr>
                 <tr>
                     <td><div name="ticketHistory" class="scrollable">
-                        Notes<br>
-                        -------------------------------<br>
                         <?php
 			            if ($result3->num_rows > 0){
 				            while($row3 = $result3->fetch_assoc()){
