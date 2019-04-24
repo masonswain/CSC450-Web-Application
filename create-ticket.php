@@ -25,7 +25,7 @@ session_start();
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				//POST Data assignment
 				$ticketTitle=$_POST['ticketTitle'];
-				$techUN=$_POST['techUN'];
+				//$techUN=$_POST['techUN'];
 				$building=$_POST['building'];
 				$room=$_POST['room'];
 				$phone=$_POST['phone'];	
@@ -57,7 +57,7 @@ session_start();
 				die("Connection failed: ".$dbConn->connect_error);
 			}
 			
-			$sql = "INSERT INTO TICKET (TICKET_TITLE, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE) VALUES ('$ticketTitle', '$techUN', '{$_SESSION['currentUser']}', 'Unassigned', '$building', '$room', '$phone')";
+			$sql = "INSERT INTO TICKET (TICKET_TITLE, TECH_UN, USER_UN, STATUS, BUILDING, ROOM, PHONE) VALUES ('$ticketTitle', 'Unassigned', '{$_SESSION['currentUser']}', 'Active', '$building', '$room', '$phone')";
 			$result = mysqli_query($conn, $sql);				
 			if ($result) {
 				echo "alert(Ticket made by $_SESSION[currentUser] created successfully);";

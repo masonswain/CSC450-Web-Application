@@ -8,7 +8,6 @@
 			<option >Select Status</option>
 			<option value="All">All</option>
 			<option value="Active">Active</option>
-			<option value="Unassigned">Currently Unassigned</option>
 			<option value="Closed">Closed</option>
 			</select>
 			<input type = "submit" />
@@ -32,7 +31,7 @@
 
 				//All tickets
 				if ($status == 'All') {
-					$sqlAll = "SELECT * FROM TICKET WHERE USER_UN='".$_SESSION['currentUser']."' AND STATUS='Active' OR STATUS='Closed' OR STATUS='Unassigned'";
+					$sqlAll = "SELECT * FROM TICKET WHERE USER_UN='".$_SESSION['currentUser']."' AND STATUS='Active' OR STATUS='Closed'";
 					include('displayTable.php');
 				}
 
@@ -46,7 +45,7 @@
 			} else if ($isAdmin['ADMIN'] == 'Y') {
 				// Unassigned Tickets
 				echo '<h3>Unassigned Ticket List</h3>';
-				$sqlAll = "SELECT * FROM TICKET WHERE STATUS='Unassigned'";
+				$sqlAll = "SELECT * FROM TICKET WHERE TECH_UN='Unassigned'";
 				include('displayTable.php');
 
 				// Assigned Tickets
