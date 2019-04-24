@@ -76,7 +76,7 @@ session_start();
 			
 			
             //Create Note in NOTE table
-            $sql3="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."')";
+            $sql3="INSERT INTO NOTE (TICKET_ID, OWNER_UN, NOTE, UNREAD_USER, UNREAD_TECH) VALUES ('".$ticketID."','{$_SESSION['currentUser']}','".$note."', '0', '1')";
 			
 			if ($conn->query($sql3) === TRUE) {
 				echo "alert(Note created successfully);";

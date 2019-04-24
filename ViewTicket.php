@@ -72,30 +72,20 @@ include('header.php');
         }
 
 		/////IF NOTE HAS BEEN VIEWED FEATURE////////
-		//The user loading the page is either the creator or the assignee of the selected ticket.
-		if($_SESSION['currentUser'] === $data['USER_UN'] || $data['TECH_UN']){
-			//If the current user is the creator of the ticket.
-			if($_SESSION['currentUser'] === $data['USER_UN']){
-				//If the Creator user did create the most recent comment
-				if($_SESSION['currentUser'] === $data1['OWNER_UN'] ){
-					//echo "</br>";
-					//echo "Unread is not changed, you made the last comment.";
-				}
-				//If the Creator user did NOT create the most recent comment
-				if($_SESSION['currentUser'] !== $data1['OWNER_UN'] ){
-					//echo "</br>";
-					//echo "Unread is being changed, you did not make the last comment.";
-					//Make change on ticket UNREAD VALUE
-					$sql5 = "UPDATE NOTE SET UNREAD_USER = 0 WHERE TICKET_ID = '".$_POST['selectedID']."' AND NOTE_ID = '".$data1['NOTE_ID']."' ";
-					$result5=$conn->query($sql5);
-					$sql6 = "SELECT * FROM NOTE WHERE TICKET_ID= '".$_POST['selectedID']."' order by NOTE_ID desc limit 1";
-					$result6=$conn->query($sql6);
-					if (mysqli_num_rows($result6) > 0) {
-						$data2 = mysqli_fetch_array($result6);
-					}
-				}
-			}
+		//If the Creator user did create the most recent comment
+		if($_SESSION['currentUser'] === $data1['OWNER_UN'] ){
+			//echo "</br>";
+			//echo "Unread is not changed, you made the last comment.";
 		}
+		//If the Creator user did NOT create the most recent comment
+		if($_SESSION['currentUser'] !== $data1['OWNER_UN'] ){
+			//echo "</br>";
+			//echo "Unread is being changed, you did not make the last comment.";
+			//Make change on ticket UNREAD VALUE
+			$sql5 = "UPDATE NOTE SET UNREAD_USER = 0 WHERE TICKET_ID = '".$_POST['selectedID']."' AND NOTE_ID = '".$data1['NOTE_ID']."' ";
+			$result5=$conn->query($sql5);
+		}
+
 	?>
 	<br><br><br>
         <form action="add-note.php" method="post" id="viewTicket">

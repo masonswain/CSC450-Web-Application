@@ -53,11 +53,21 @@
 			if (mysqli_num_rows($resultURM) > 0) {
 				$dataURM = mysqli_fetch_array($resultURM);
 			}
-			if($dataURM['UNREAD_TECH'] === '0'){
-				echo "No";
+			if($isAdmin['ADMIN'] == 'Y'){
+				if($dataURM['UNREAD_TECH'] === '0'){
+					echo "No";
+				}
+				if($dataURM['UNREAD_TECH'] === '1'){
+					echo "Yes";
+				}
 			}
-			if($dataURM['UNREAD_TECH'] === '1'){
-				echo "Yes";
+			if($isAdmin['ADMIN'] == 'N'){
+				if($dataURM['UNREAD_USER'] === '0'){
+					echo "No";
+				}
+				if($dataURM['UNREAD_USER'] === '1'){
+					echo "Yes";
+				}
 			}
 			echo "</td>";
 			echo "</tr>";
