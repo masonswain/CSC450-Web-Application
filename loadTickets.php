@@ -3,18 +3,8 @@
 ?>
 <html>
 	<body>
-		<form action = "<?php $_PHP_SELF ?>" method = "POST">
-			Filter Tickets: <select name= "status">
-			<option >Select Status</option>
-			<option value="All">All</option>
-			<option value="Active">Active</option>
-			<option value="Closed">Closed</option>
-			</select>
-			<input type = "submit" />
-		</form>
-
 		<?php
-			$status = $_POST['status'];
+			$status = $_POST['filter'];
 			if (!isset($status)) {
 				$status = "Active";
 			}
@@ -61,7 +51,8 @@
 					$sqlAll = "SELECT * FROM TICKET WHERE TECH_UN='".$_SESSION['currentUser']."' AND STATUS='".$status."'";
 					include('displayTable.php');
 				}
-			}			
+			}
+						
 		?>
 	</body>
 </html>

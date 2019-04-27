@@ -9,6 +9,7 @@ $username = "joelknut_csc450";
 $pw = "CSP@2019";
 $dbName = "joelknut_csc450";
 $conn = new mysqli($servername, $username, $pw, $dbName);
+$connect = mysqli_connect($servername, $username, $pw, $dbName);
 
 /// *** Ticket Counter *** /// 
 //Total Tickets

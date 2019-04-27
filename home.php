@@ -68,16 +68,40 @@
 			echo "<button type='button' class='button' style='float:left;' onClick='location.href=\"openTicket.php\"'>Open Ticket</button>";
 		}
 	?>
-	
-	<br>
-	<br>
-	
+	<br><br>
+	<form  name="filterForm" action="<?php $_PHP_SELF ?>" method="POST">
+		Filter Tickets: <select name="filter" id="filter" onchange="filterForm.submit();">
+							<option >Select Status</option>
+							<option value="All">All</option>
+							<option value="Active">Active</option>
+							<option value="Closed">Closed</option>
+						</select>
+	</form>
+	<div id="tickets">
+	</div>
 	<?php
 		//Dropdown
 		include('loadTickets.php');
 		echo "<br>";
 	?>
-	
+	<script>
+	$(document).ready(function() {
+		$('#filter').change(function() {
+
+			var filter = $(this).val();
+
+			$.ajax({
+				url:"loadTickets.php",
+				method:"POST",
+				data:{filter:filter},
+				success:function(data) {
+					$('#tickets').html(data);
+				}
+			});
+		});
+	});
+	</script>
+
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
