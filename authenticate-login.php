@@ -54,13 +54,13 @@ if (mysqli_num_rows($resultOfQuery) > 0) {
 
 			if ($result->num_rows > 0){
 				while($row = $result->fetch_assoc()){
-					header("Location:home.php");
+					header("Location: /web/home.php");
 				}
 			} else {
 				echo "Login failed.  Double check your username and password.";
 				echo "<br><br>";
 				echo '<button type="button" class="button" onclick="';
-				echo "location.href='index.html'";
+				echo "location.href='/web/index.html'";
 				echo '">Try again.</button>';
 			}
 			$conn->close();
