@@ -10,7 +10,12 @@
 		echo "<th>Title</th>";
 		echo "<th>Status</th>";
 		echo "<th>Assigned To</th>";
-		echo "<th>Unread Messages</th></tr>";
+		if ($isAdmin['ADMIN'] == 'N') {
+			echo "<th>Unread Messages</th></tr>";
+		} else if ($isAdmin['ADMIN'] == 'Y') {
+			echo "<th>Awaiting Reply</th></tr>";
+		}
+		
 		//while loop formats table data
 		while($row2 = $resultAll->fetch_assoc()){
 			$id2 = $row2["TICKET_ID"];
