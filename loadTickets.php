@@ -1,5 +1,5 @@
 <?php
-	include('/web/header.php');
+	include('header.php');
 ?>
 <html>
 	<body>
@@ -22,13 +22,13 @@
 				//All tickets
 				if ($status == 'All') {
 					$sqlAll = "SELECT * FROM TICKET WHERE USER_UN='".$_SESSION['currentUser']."' AND STATUS='Active' OR STATUS='Closed'";
-					include('/web/displayTable.php');
+					include('displayTable.php');
 				}
 
 				//Active or Closed options
 				else {
 					$sqlAll = "SELECT * FROM TICKET WHERE USER_UN='".$_SESSION['currentUser']."' AND STATUS='".$status."'";
-					include('/web/displayTable.php');
+					include('displayTable.php');
 				}
 
 			// ADMIN INTERFACE
@@ -36,7 +36,7 @@
 				// Unassigned Tickets
 				echo '<h3>Unassigned Ticket List</h3>';
 				$sqlAll = "SELECT * FROM TICKET WHERE TECH_UN='Unassigned'";
-				include('/web/displayTable.php');
+				include('displayTable.php');
 
 				// Assigned Tickets
 				echo '<h3>Assigned Ticket List ('.$status.')</h3>';
@@ -44,12 +44,12 @@
 				//All tickets
 				if($status == 'All'){
 					$sqlAll = "SELECT * FROM TICKET WHERE TECH_UN='".$_SESSION['currentUser']."' AND STATUS='Active' OR STATUS='Closed'";
-					include('/web/displayTable.php');
+					include('displayTable.php');
 				}
 				//Active or Closed options
 				else {
 					$sqlAll = "SELECT * FROM TICKET WHERE TECH_UN='".$_SESSION['currentUser']."' AND STATUS='".$status."'";
-					include('/web/displayTable.php');
+					include('displayTable.php');
 				}
 			}
 						

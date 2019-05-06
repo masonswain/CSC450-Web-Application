@@ -60,7 +60,7 @@
 				echo "New user: ".$fname." ".$lname." created successfully";
 				echo "<br><br>";
 				echo '<button type="button" class="button" onclick="';
-				echo "location.href='index.html'";
+				echo "location.href='index.php'";
 				echo '">Login</button>';
 			} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;

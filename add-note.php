@@ -47,7 +47,7 @@ if ($conn->query($sql) === TRUE) {
 	else{
 		echo "Unread flag not cleared."; 
 	}
-	header("Location: home.php");
+	echo "<script>location.href='home.php';</script>";
 } 
 else {
 	echo "Error: " . $sql . "<br>" . $conn->error;
@@ -55,5 +55,5 @@ else {
 
 $conn->close();
 
-header('Location: home.php');
+echo "<script>location.href='home.php';</script>";
 ?>

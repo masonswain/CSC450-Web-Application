@@ -1,12 +1,15 @@
-﻿<?php
-	//add header
-	include('/web/header.php');
+<?php session_start();
+//session_regenerate_id();
+if (!isset($_SESSION['currentUser'])) {
+	echo "<script>location.href='index.php';</script>";
+}
+include('header.php');
 ?>
 <!doctype html>
 
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+	
 
 	<title>South St. Paul Technology - Home Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +26,7 @@
 			 $_SESSION[currentLastName]";
 		?>
 	</h3>
-	<form action="/web/logout.php">
+	<form action="logout.php">
 		<input type="submit" class="button" style="float:left;color:white;cursor:pointer;" value="Logout"/>
 	</form>
 </div>
@@ -65,7 +68,7 @@
 	<br><br>
 	<?php
 		if ($isAdmin['ADMIN'] == 'N') {
-			echo "<button type='button' class='button' style='float:left;' onClick='location.href=\"/web/openTicket.php\"'>Open Ticket</button>";
+			echo "<button type='button' class='button' style='float:left;' onClick='location.href=\"OpenTicket.php\"'>Open Ticket</button>";
 		}
 	?>
 	<br><br>
@@ -81,7 +84,7 @@
 	</div>
 	<?php
 		//Dropdown
-		include('/web/loadTickets.php');
+		include('loadTickets.php');
 		echo "<br>";
 	?>
 	<script>
@@ -91,7 +94,7 @@
 			var filter = $(this).val();
 
 			$.ajax({
-				url:"/web/loadTickets.php",
+				url:"loadTickets.php",
 				method:"POST",
 				data:{filter:filter},
 				success:function(data) {

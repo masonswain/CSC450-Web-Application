@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿<?php
+//session_start();
+?>
+<!doctype html>
 
 <html lang="en">
 <head>
@@ -17,14 +20,14 @@
 <body>
 
 	<h2>South St Paul Technology</h2>
-	<form action="/web/authenticate-login.php" method="post">
+	<form action="authenticate-login.php" method="post">
 		<div id="login">
 			<input required class="form-control" name="un"  type="text" id="username" placeholder="Username"><br><br>
 			<input required class="form-control" name="authpw" type="password" id="password" placeholder="Password"><br><br>
 		
 			<!--<a href="http://csc450.joelknutson.net/authenticate-login.php?un=jknutson&authpw=12345">-->
 				<button type="submit" class="button">Login</button>
-				<button type="button" class="button" onclick="location.href='/web/newUser.html'">Create Account</button>
+				<button type="button" class="button" onclick="location.href='newUser.html'">Create Account</button>
 			<!--</a>-->
 		</div>
 	</form>

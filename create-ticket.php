@@ -80,7 +80,7 @@ session_start();
 			
 			if ($conn->query($sql3) === TRUE) {
 				echo "alert(Note created successfully);";
-				header("Location: home.php");
+				echo "<script>location.href='home.php';</script>";
 			} 
 			else {
 				echo "Error: " . $sql . "<br>" . $conn->error;

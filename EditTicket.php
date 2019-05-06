@@ -1,5 +1,9 @@
 <?php
-//add header
+session_start();
+session_regenerate_id();
+if (!isset($_SESSION['currentUser'])) {
+	echo "<script>location.href='index.php';</script>";
+}
 include('header.php');
 ?>
 
